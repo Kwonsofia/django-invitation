@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import WeddingMain, Phone, Account, Photo, Address
+from .utils import wedding_date
 
 
 # Create your views here.
@@ -17,6 +18,7 @@ def index(request, wedding_id):
         'phone': phone,
         'account': account,
         'address': address,
+        'date': wedding_date(wedding.wedding_date)
     }
 
     return render(request, 'main/index.html', data)
