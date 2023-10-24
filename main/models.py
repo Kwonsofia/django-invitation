@@ -45,6 +45,6 @@ class GuestBook(models.Model):
     message = models.TextField
     reg_dtime = models.DateTimeField(auto_now_add=True)
 
-class Photos(models.Model):
+class Photo(models.Model):
     wedding_id = models.ForeignKey(WeddingMain, on_delete=models.CASCADE)
     img = models.ImageField(upload_to='images')  # image를 넣을때는 {id}_{number}.jpg 형식으로 네이밍 필요

@@ -1,0 +1,237 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="part" id="mainImage">
+        <img src="./images/main_image.png">
+    </div>
+    <script src="{% static main.js %}"></script>
+
+    <div class="part" id="introduce">
+        <div>
+            If we can’t accept limitations,
+        </div>
+        <div>
+            then we’re no better than the bad guys.
+        </div>
+        <div>– Iron Man</div>
+    </div>
+
+    <div class="part" id="subImage">
+        <img src="./images/sub_image.png">
+    </div>
+
+    <div class="part" id="phone">
+        <div class="content">
+            <div>
+                <p>
+                    <span id="groom_father_name">{{info.0.groom_father_name}}</span> & <span id="groom_mother_name">{{info.0.groom_mother_name}}</span> <span class="rel"> &nbsp; 의 장남 &nbsp; </span> <span id="groom_name">{{info.0.groom_name}}</span>
+                </p>
+                <p>
+                    <span id="bride_father_name">{{info.0.bride_father_name}}</span> & <span id="bride_mother_name">{{info.0.bride_mother_name}}</span> <span class="rel"> &nbsp; 의 장녀 &nbsp; </span> <span id="bride_name">{{info.0.bride_name}}</span>
+                </p>
+            </div>
+            <button id="call" class="button">연락하기</a>
+        </div>
+
+        <div id="modal-container">
+            <div class="modal-background">
+                <div class="modal">
+                    <div>
+                        <p>CONTACT</p>
+                        <p>연락하기</p>
+                    </div>
+                    <table id="groom_contact">
+                        <tr>
+                            <td>신랑</td>
+                            <td><span id="groom_name">{{info.0.groom_name}}</span></td>
+                            <td id="groom_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                        </tr>
+                        <tr>
+                            <td>신랑아버지</td>
+                            <td><span id="groom_father_name">{{info.0.groom_father_name}}</span></td>
+                            <td id="groom_father_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                        </tr>
+                        <tr>
+                            <td>신랑어머니</td>
+                            <td><span id="groom_mother_name">{{info.0.groom_mother_name}}</span></td>
+                            <td id="groom_mother_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <table id="bride_contact">
+                        <tr>
+                            <td>신부</td>
+                            <td><span id="bride_name">{{info.0.bride_name}}</span></td>
+                            <td id="bride_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                        </tr>
+                        <tr>
+                            <td>신부아버지</td>
+                            <td><span id="bride_father_name">{{info.0.bride_father_name}}</span></td>
+                            <td id="bride_father_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                        </tr>
+                        <tr>
+                            <td>신부어머니</td>
+                            <td><span id="bride_mother_name">{{info.0.bride_mother_name}}</span></td>
+                            <td id="bride_mother_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                        </tr>
+
+                    </table>
+                    <button id="close-modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="part" id="calender">
+        <h3>Day</h3>
+        <table id="calender-table">
+            <thead>
+                <tr>
+                    <td colspan="7">
+                        <span id="calYear"></span>.
+                        <span id="calMonth"></span>.
+                        <span id="calDay"></span>
+                        <br>
+                        <span id="calTime"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="sunday">일</td>
+                    <td>월</td>
+                    <td>화</td>
+                    <td>수</td>
+                    <td>목</td>
+                    <td>금</td>
+                    <td>토</td>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+        <div id="day-count">
+            결혼식이&nbsp;<span></span><p></p>
+        </div>
+    </div>
+
+    <div class="part" id="gallery">
+        <!-- <h3>Gallery</h3> -->
+        <div id="slide">
+            <div class="slide_item"><img src="./images/image1.png" alt=""></div>
+            <div class="slide_item"><img src="./images/image2.png" alt=""></div>
+            <div class="slide_item"><img src="./images/image3.png" alt=""></div>
+            <div class="slide_item"><img src="./images/image4.png" alt=""></div>
+            <div class="slide_item"><img src="./images/image5.png" alt=""></div>
+            <div class="slide_prev_button slide_button"></div>
+            <div class="slide_next_button slide_button"></div>
+            <ul class="slide_pagination"></ul>
+        </div>
+    </div>
+
+    <div class="part" id="map">
+        <h3>오시는 길</h3>
+        <!-- 참고: https://bos.kr/kwa-manual_v-1668?pc=p -->
+        <div id="kakao-map">
+            <div>
+                <a href="https://map.kakao.com/?urlX=520941.0&amp;urlY=1140835.0&amp;itemId=7976714&amp;q=%EC%8B%A0%EC%95%84%ED%83%80%EC%9A%B4&amp;srcid=7976714&amp;map_type=TYPE_MAP&amp;from=roughmap"
+                    target="_blank">
+                    <img id="map-img"
+                        src="http://t1.daumcdn.net/roughmap/imgmap/5e7ac56c5adb4131b192346d8514f22bf9f7594699d98355242a4d724a81ff39"></a>
+            </div>
+            <div id="kakao-map-menu">
+                <a href="https://map.kakao.com" target="_blank">
+                    <img src="https://i.namu.wiki/i/lqKuo3i_ODZGkbxOA_df4Idn4_cm8GtgyKaSNwfxhX1H3J7Eewgnvbtyxgk2jVsEIHDFUbgdthaOL_tGm4yMMQ.svg"
+                        alt="카카오맵"></a>
+                <div><a target="_blank"
+                        href="https://map.kakao.com/?from=roughmap&amp;srcid=7976714&amp;confirmid=7976714&amp;q=%EC%8B%A0%EC%95%84%ED%83%80%EC%9A%B4&amp;rv=on">
+                        로드뷰
+                    </a>
+                    <span></span>
+                    <a target="_blank"
+                        href="https://map.kakao.com/?from=roughmap&amp;eName=%EC%8B%A0%EC%95%84%ED%83%80%EC%9A%B4&amp;eX=520941.0&amp;eY=1140835.0">
+                        길찾기
+                    </a>
+                    <span></span>
+                    <a target="_blank"
+                        href="https://map.kakao.com?map_type=TYPE_MAP&amp;from=roughmap&amp;srcid=7976714&amp;itemId=7976714&amp;q=%EC%8B%A0%EC%95%84%ED%83%80%EC%9A%B4&amp;urlX=520941.0&amp;urlY=1140835.0">
+                        지도 크게 보기
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p id="address">{{address.0.address}}</p>
+            <p id="address_tel">{{address.0.address_tel}}</p>
+        </div>
+    </div>
+
+    <div class="part" id="bank">
+        <h3>마음 전하실 곳</h3>
+        <div class="bank-list">
+            <div class="triggerToggle">
+                <p>신랑측</p><p>더보기</p>
+            </div>
+            <div class="target">
+                <table>
+                    <tr class="clipboard">
+                        <td id="groom_name">{{info.0.groom_name}}</td>
+                        <td class="account" id="groom_account">{{account.0.groom_account}}</td>
+                        <td><button>복사하기</button></td>
+                    </tr>
+                    <tr class="clipboard">
+                        <td>[혼주] <span id="groom_father_name">{{info.0.groom_father_name}}</span></td>
+                        <td class="account" id="groom_father_account">{{account.0.groom_father_account}}</td>
+                        <td><button>복사하기</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="bank-list">
+            <div class="triggerToggle">
+                <p>신부측</p><p>더보기</p>
+            </div>
+            <div class="target">
+                <table>
+                    <tr class="clipboard">
+                        <td><span id="bride_name">{{info.0.bride_name}}</span></td>
+                        <td class="account" id="bride_account">{{account.0.bride_account}}</td>
+                        <td></td>
+                        <td><button>복사하기</button></td>
+                    </tr>
+                    <tr class="clipboard">
+                        <td>[혼주] <span id="bride_father_name">{{info.0.bride_father_name}}</span></td>
+                        <td class="account" id="bride_father_account">{{account.0.bride_father_account}}</td>
+                        <td></td>
+                        <td><button>복사하기</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="part" id="comment">
+        <h3>방명록</h3>
+    </div>
+
+    <script src="{% static 'phone.js' %}"></script>
+    <script src="{% static 'calender.js' %}"></script>
+    <script src="{% static 'slide.js' %}"></script>
+    <script src="{% static 'bank.js' %}"></script>
+
+</body>
+</html>
