@@ -34,10 +34,10 @@
         <div class="content">
             <div>
                 <p>
-                    <span id="groom_father_name">{{info.0.groom_father_name}}</span> & <span id="groom_mother_name">{{info.0.groom_mother_name}}</span> <span class="rel"> &nbsp; 의 장남 &nbsp; </span> <span id="groom_name">{{info.0.groom_name}}</span>
+                    <span id="groom_father_name">{{info.groom_father_name}}</span> & <span id="groom_mother_name">{{info.groom_mother_name}}</span> <span class="rel"> &nbsp; 의 장남 &nbsp; </span> <span id="groom_name">{{info.groom_name}}</span>
                 </p>
                 <p>
-                    <span id="bride_father_name">{{info.0.bride_father_name}}</span> & <span id="bride_mother_name">{{info.0.bride_mother_name}}</span> <span class="rel"> &nbsp; 의 장녀 &nbsp; </span> <span id="bride_name">{{info.0.bride_name}}</span>
+                    <span id="bride_father_name">{{info.bride_father_name}}</span> & <span id="bride_mother_name">{{info.bride_mother_name}}</span> <span class="rel"> &nbsp; 의 장녀 &nbsp; </span> <span id="bride_name">{{info.bride_name}}</span>
                 </p>
             </div>
             <button id="call" class="button">연락하기</a>
@@ -53,36 +53,36 @@
                     <table id="groom_contact">
                         <tr>
                             <td>신랑</td>
-                            <td><span id="groom_name">{{info.0.groom_name}}</span></td>
-                            <td id="groom_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                            <td><span id="groom_name">{{info.groom_name}}</span></td>
+                            <td id="groom_phone"><a class="number" href="tel:{{phone.groom_phone}}">Call</a></td>
                         </tr>
                         <tr>
                             <td>신랑아버지</td>
-                            <td><span id="groom_father_name">{{info.0.groom_father_name}}</span></td>
-                            <td id="groom_father_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                            <td><span id="groom_father_name">{{info.groom_father_name}}</span></td>
+                            <td id="groom_father_phone"><a class="number" href="tel:{{phone.groom_father_phone}}">Call</a></td>
                         </tr>
                         <tr>
                             <td>신랑어머니</td>
-                            <td><span id="groom_mother_name">{{info.0.groom_mother_name}}</span></td>
-                            <td id="groom_mother_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                            <td><span id="groom_mother_name">{{info.groom_mother_name}}</span></td>
+                            <td id="groom_mother_phone"><a class="number" href="tel:{{phone.groom_mother_phone}}">Call</a></td>
                         </tr>
                     </table>
                     <hr>
                     <table id="bride_contact">
                         <tr>
                             <td>신부</td>
-                            <td><span id="bride_name">{{info.0.bride_name}}</span></td>
-                            <td id="bride_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                            <td><span id="bride_name">{{info.bride_name}}</span></td>
+                            <td id="bride_phone"><a class="number" href="tel:{{phone.bride_phone}}">Call</a></td>
                         </tr>
                         <tr>
                             <td>신부아버지</td>
-                            <td><span id="bride_father_name">{{info.0.bride_father_name}}</span></td>
-                            <td id="bride_father_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                            <td><span id="bride_father_name">{{info.bride_father_name}}</span></td>
+                            <td id="bride_father_phone"><a class="number" href="tel:{{phone.bride_father_phone}}">Call</a></td>
                         </tr>
                         <tr>
                             <td>신부어머니</td>
-                            <td><span id="bride_mother_name">{{info.0.bride_mother_name}}</span></td>
-                            <td id="bride_mother_phone"><a class="number" href="tel:010-1234-1234">Call</a></td>
+                            <td><span id="bride_mother_name">{{info.bride_mother_name}}</span></td>
+                            <td id="bride_mother_phone"><a class="number" href="tel:{{phone.bride_mother_phone}}">Call</a></td>
                         </tr>
 
                     </table>
@@ -175,8 +175,8 @@
             </div>
         </div>
         <div>
-            <p id="address">{{address.0.address}}</p>
-            <p id="address_tel">{{address.0.address_tel}}</p>
+            <p id="address">{{address.address}}</p>
+            <p id="address_tel">{{address.address_tel}}</p>
         </div>
     </div>
 
@@ -189,13 +189,13 @@
             <div class="target">
                 <table>
                     <tr class="clipboard">
-                        <td id="groom_name">{{info.0.groom_name}}</td>
-                        <td class="account" id="groom_account">{{account.0.groom_account}}</td>
+                        <td id="groom_name">{{info.groom_name}}</td>
+                        <td class="account" id="groom_account">{{account.groom_account}}</td>
                         <td><button>복사하기</button></td>
                     </tr>
                     <tr class="clipboard">
-                        <td>[혼주] <span id="groom_father_name">{{info.0.groom_father_name}}</span></td>
-                        <td class="account" id="groom_father_account">{{account.0.groom_father_account}}</td>
+                        <td>[혼주] <span id="groom_father_name">{{info.groom_father_name}}</span></td>
+                        <td class="account" id="groom_father_account">{{account.groom_father_account}}</td>
                         <td><button>복사하기</button></td>
                     </tr>
                 </table>
@@ -208,14 +208,14 @@
             <div class="target">
                 <table>
                     <tr class="clipboard">
-                        <td><span id="bride_name">{{info.0.bride_name}}</span></td>
-                        <td class="account" id="bride_account">{{account.0.bride_account}}</td>
+                        <td><span id="bride_name">{{info.bride_name}}</span></td>
+                        <td class="account" id="bride_account">{{account.bride_account}}</td>
                         <td></td>
                         <td><button>복사하기</button></td>
                     </tr>
                     <tr class="clipboard">
-                        <td>[혼주] <span id="bride_father_name">{{info.0.bride_father_name}}</span></td>
-                        <td class="account" id="bride_father_account">{{account.0.bride_father_account}}</td>
+                        <td>[혼주] <span id="bride_father_name">{{info.bride_father_name}}</span></td>
+                        <td class="account" id="bride_father_account">{{account.bride_father_account}}</td>
                         <td></td>
                         <td><button>복사하기</button></td>
                     </tr>
