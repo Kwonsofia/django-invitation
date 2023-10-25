@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from .models import WeddingMain, Phone, Account, Photo, Address
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook
 from .utils import wedding_date
 
 
@@ -13,6 +15,7 @@ def invitation(request, wedding_id):
     account = Account.objects.filter(wedding_id=wedding_id)
     address = Address.objects.filter(wedding_id=wedding_id)
     photos = Photo.objects.filter(wedding_id=wedding_id)
+    guestbook = GuestBook.objects.filter(wedding_id=wedding_id).order_by('-reg_dtime')
 
     if not wedding:
         return render(request, 'main/error.html')
@@ -35,7 +38,19 @@ def invitation(request, wedding_id):
         'main_image': main_image,
         'sub_image': sub_image,
         'photos': photo_list,
-        'date': wedding_date(wedding[0].wedding_date, wedding[0].wedding_time)
+        'date': wedding_date(wedding[0].wedding_date, wedding[0].wedding_time),
+        'guestbook_list': guestbook
     }
 
     return render(request, 'main/invitation.html', data)
+
+def guestbook(request):
+    if request.method == 'POST':
+        
+        name = request.POST['name']
+        message = request.POST['message']
+        wedding_id = request.POST['wedding_id']
+        passwd = request.POST['passwd']
+        guestbook = GuestBook(name=name, message=message, wedding_id=wedding_id, passwd=passwd)
+        guestbook.save()
+        return HttpResponseRedirect('/')

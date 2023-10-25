@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import WeddingMain, Phone, Account, Address, Photo
+from .models import WeddingMain, Phone, Account, Address, Photo, GuestBook
 
 # Register your models here.
 class WeddingAdmin(admin.ModelAdmin):
@@ -11,3 +11,4 @@ admin.site.register(Phone)
 admin.site.register(Account)
 admin.site.register(Address)
 admin.site.register(Photo)
+admin.site.register(GuestBook)

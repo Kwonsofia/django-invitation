@@ -35,10 +35,14 @@
         <div class="content">
             <div>
                 <p>
-                    <span id="groom_father_name">{{ info.groom_father_name }}</span> & <span id="groom_mother_name">{{ info.groom_mother_name }}</span> <span class="rel"> &nbsp; 의 장남 &nbsp; </span> <span id="groom_name">{{ info.groom_name }}</span>
+                    <span id="groom_father_name">{{ info.groom_father_name }}</span> & <span id="groom_mother_name">{{
+                        info.groom_mother_name }}</span> <span class="rel"> &nbsp; 의 장남 &nbsp; </span> <span
+                        id="groom_name">{{ info.groom_name }}</span>
                 </p>
                 <p>
-                    <span id="bride_father_name">{{ info.bride_father_name }}</span> & <span id="bride_mother_name">{{ info.bride_mother_name }}</span> <span class="rel"> &nbsp; 의 장녀 &nbsp; </span> <span id="bride_name">{{ info.bride_name }}</span>
+                    <span id="bride_father_name">{{ info.bride_father_name }}</span> & <span id="bride_mother_name">{{
+                        info.bride_mother_name }}</span> <span class="rel"> &nbsp; 의 장녀 &nbsp; </span> <span
+                        id="bride_name">{{ info.bride_name }}</span>
                 </p>
             </div>
             <button id="call" class="button">연락하기</a>
@@ -60,12 +64,14 @@
                         <tr>
                             <td>신랑아버지</td>
                             <td><span id="groom_father_name">{{ info.groom_father_name }}</span></td>
-                            <td id="groom_father_phone"><a class="number" href="tel:{{ phone.groom_father_phone }}">Call</a></td>
+                            <td id="groom_father_phone"><a class="number"
+                                    href="tel:{{ phone.groom_father_phone }}">Call</a></td>
                         </tr>
                         <tr>
                             <td>신랑어머니</td>
                             <td><span id="groom_mother_name">{{ info.groom_mother_name }}</span></td>
-                            <td id="groom_mother_phone"><a class="number" href="tel:{{ phone.groom_mother_phone }}">Call</a></td>
+                            <td id="groom_mother_phone"><a class="number"
+                                    href="tel:{{ phone.groom_mother_phone }}">Call</a></td>
                         </tr>
                     </table>
                     <hr>
@@ -78,12 +84,14 @@
                         <tr>
                             <td>신부아버지</td>
                             <td><span id="bride_father_name">{{ info.bride_father_name }}</span></td>
-                            <td id="bride_father_phone"><a class="number" href="tel:{{ phone.bride_father_phone }}">Call</a></td>
+                            <td id="bride_father_phone"><a class="number"
+                                    href="tel:{{ phone.bride_father_phone }}">Call</a></td>
                         </tr>
                         <tr>
                             <td>신부어머니</td>
                             <td><span id="bride_mother_name">{{ info.bride_mother_name }}</span></td>
-                            <td id="bride_mother_phone"><a class="number" href="tel:{{ phone.bride_mother_phone }}">Call</a></td>
+                            <td id="bride_mother_phone"><a class="number"
+                                    href="tel:{{ phone.bride_mother_phone }}">Call</a></td>
                         </tr>
 
                     </table>
@@ -132,16 +140,17 @@
             </tbody>
         </table>
         <div id="day-count">
-            결혼식이&nbsp;<span></span><p></p>
+            결혼식이&nbsp;<span></span>
+            <p></p>
         </div>
     </div>
 
     <div class="part" id="gallery">
         <!-- <h3>Gallery</h3> -->
-        
+
         <div id="slide">
             {% for photo in photos %}
-                <div class="slide_item"><img src="{{ photo.url }}" alt=""></div>
+            <div class="slide_item"><img src="{{ photo.url }}" alt=""></div>
             {% endfor %}
             <div class="slide_prev_button slide_button"></div>
             <div class="slide_next_button slide_button"></div>
@@ -190,7 +199,8 @@
         <h3>마음 전하실 곳</h3>
         <div class="bank-list">
             <div class="triggerToggle">
-                <p>신랑측</p><p>더보기</p>
+                <p>신랑측</p>
+                <p>더보기</p>
             </div>
             <div class="target">
                 <table>
@@ -209,7 +219,8 @@
         </div>
         <div class="bank-list">
             <div class="triggerToggle">
-                <p>신부측</p><p>더보기</p>
+                <p>신부측</p>
+                <p>더보기</p>
             </div>
             <div class="target">
                 <table>
@@ -232,6 +243,51 @@
 
     <div class="part" id="comment">
         <h3>방명록</h3>
+        <table>
+            {% if guestbook_list %}
+            {% for guestbook in guestbook_list %}
+            <tr>
+                <td>{{guestbook.name}}</td>
+                <td>{{guestbook.message}}</td>
+                <td>{{guestbook.reg_dtime}}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+        
+        <form action="/guestbook" , method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <input type="text" name="wedding_id" class="form-control" id="inputID" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputAuthor" class="col-sm-2 col-form-label"><strong>이름</strong></label>
+                    <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control" id="inputAuthor" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPasswd" class="col-sm-2 col-form-label"><strong>비밀번호</strong></label>
+                    <div class="col-sm-10">
+                        <input type="password" name="passwd" class="form-control" id="inputPasswd"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputMessage" class="col-sm-2 col-form-label"><strong>내용</strong></label>
+                    <div class="col-sm-10">
+                        <textarea type="text" name="message" class="form-control" id="inputMessage"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto mr-auto"></div>
+                    <div class="col-auto">
+                        <input class="btn btn-primary" type="submit" role="button" value="작성" />
+                    </div>
+                </div>
+        </form>
     </div>
 
     <script src="{% static 'phone.js' %}"></script>
@@ -240,5 +296,6 @@
     <script src="{% static 'bank.js' %}"></script>
 
 </body>
+
 </html>
 {% endblock %}
