@@ -20,5 +20,6 @@ from main import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('<str:wedding_id>', views.index),
+    path('', views.index),
+    path('<str:wedding_id>', views.invitation),
 ]
