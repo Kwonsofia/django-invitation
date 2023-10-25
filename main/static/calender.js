@@ -62,29 +62,12 @@ function countWeddingDay(wedding_year, wedding_month, wedding_day) {
   }
 }
 
-fetch("http://localhost:8000/wedding-day", {
-    "method":"GET",
-    credentials: "include"})
-    .then(res => res.json())
-    .then(res => {
-        let wedding_year = res['wedding_year'];
-        let wedding_month = res['wedding_month'];
-        let wedding_day = res['wedding_day'];
-        let wedding_time = res['wedding_time'];
+var wedding_year = document.querySelector('#wedding_year').innerText;
+var wedding_month = parseInt(document.querySelector('#wedding_month').innerText) - 1;;
+var wedding_day = document.querySelector('#wedding_day').innerText;
+var wedding_time = document.querySelector('#wedding_time').innerText;
 
-        window.onload = function () {
-          buildCalendar(wedding_year, wedding_month, wedding_day, wedding_time);
-        }; // 웹 페이지가 로드되면 buildCalendar 실행
-        countWeddingDay(wedding_year, wedding_month, wedding_day);
-    })
-
-// input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
-// function leftPad(value) {
-//     if (value < 10) {
-//         value = "0" + value;
-//         return value;
-//     }
-//     return value;
-// }
-
-
+window.onload = function () {
+  buildCalendar(wedding_year, wedding_month, wedding_day, wedding_time);
+}; // 웹 페이지가 로드되면 buildCalendar 실행
+countWeddingDay(wedding_year, wedding_month, wedding_day);
