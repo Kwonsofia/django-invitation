@@ -23,6 +23,9 @@ def invitation(request, wedding_id):
     photo_list = []
     for photo in photos:
 
+        # if wedding_id not in photo.img.url:
+        #     continue
+
         if 'main_' in photo.img.url:
             main_image = photo.img
         elif 'sub_' in photo.img.url:
