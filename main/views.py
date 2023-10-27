@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook
@@ -48,12 +48,14 @@ def invitation(request, wedding_id):
     return render(request, 'main/invitation.html', data)
 
 def guestbook(request):
-    if request.method == 'POST':
-        
-        name = request.POST['name']
-        message = request.POST['message']
-        wedding_id = request.POST['wedding_id']
-        passwd = request.POST['passwd']
-        guestbook = GuestBook(name=name, message=message, wedding_id=wedding_id, passwd=passwd)
-        guestbook.save()
-        return HttpResponseRedirect('/')
+
+    guestbook = GuestBook()
+
+    guestbook.name = request.POST['name']
+    guestbook.message = request.POST['message']
+    guestbook.wedding_id = request.POST['wedding_id']
+    guestbook.passwd = request.POST['passwd']
+
+    guestbook.save()
+
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
