@@ -38,11 +38,11 @@ class Address(models.Model):
     address_tel = models.CharField(max_length=100, null=True)
 
 class GuestBook(models.Model):
-    wedding_id = models.ForeignKey(WeddingMain, on_delete=models.CASCADE)
+    wedding_id = models.CharField(max_length=20)
     msg_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=10)
     passwd = models.CharField(max_length=60)
-    message = models.TextField
+    message = models.CharField(max_length=500, default='')
     reg_dtime = models.DateTimeField(auto_now_add=True)
 
 class Photo(models.Model):
