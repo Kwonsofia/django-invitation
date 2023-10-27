@@ -60,8 +60,8 @@ makemigrations VS migration
 - migration 은 변화 기록을 참고하여 실제 변화 사항을 반영
 
 
-
 ## Reference
 - https://velog.io/@hyeoneedyou/django-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%EC%84%B8%ED%8C%85#5-%EC%84%9C%EB%B2%84-%EC%8B%A4%ED%96%89
 - https://kante-kante.tistory.com/8
 - https://github.com/dkyou7/TIL/blob/master/%ED%8C%8C%EC%9D%B4%EC%8D%AC/Django/6.%20%5BDjango%5D%20%ED%8F%BC%20%EB%A7%8C%EB%93%A4%EA%B8%B0.md // models.py에서 참고
+- AWS서버 세팅 및 nginx/uwsgi/django 연동: https://nerogarret.tistory.com/48
