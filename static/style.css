@@ -143,7 +143,7 @@ h3 {
     text-align: center;
 }
 
-.modal>table>tr>td:first-child{
+.modal>table>tr>td:first-child {
     padding: 0;
 }
 
@@ -368,7 +368,7 @@ li {
     background-color: #da5a5a;
 }
 
-#day-count{
+#day-count {
     width: 100%;
     margin-top: 30px;
     display: flex;
@@ -376,8 +376,8 @@ li {
     align-items: center;
 }
 
-#day-count>span{
-    font-weight:500;
+#day-count>span {
+    font-weight: 500;
 }
 
 
@@ -558,11 +558,14 @@ li {
     font-family: 'GowunBatang-Regular';
 }
 
-#write-button {
+#write-button,
+#show-guestbook,
+#write-guestbook,
+#close-guestbook {
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    padding: 10px 30px;
+    padding: 10px 20px;
     margin: 20px 0;
     border-radius: 3em;
     border: 0;
@@ -570,7 +573,15 @@ li {
     font-family: 'GowunBatang-Regular';
 }
 
-#write-button:hover {
+#show-guestbook>a {
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+}
+
+#write-button:hover,
+#write-guestbook:hover,
+#close-guestbook:hover {
     color: #fff;
     background-color: #f8f2e9;
 }

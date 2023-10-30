@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('<str:wedding_id>', views.invitation),
+    path('<str:wedding_id>/guestbook/', views.guestbook_list, name='guestbooks'),
     path('guestbook/', views.guestbook, name='guestbook'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

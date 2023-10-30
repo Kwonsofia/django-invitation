@@ -17,9 +17,9 @@
 //   // }
 // });
 
-const modal = document.getElementById("guestbook-modal-container");
-const openModalBtn = document.getElementById("comment-button");
-const closeModalBtn = document.getElementById("comment-close-modal");
+const modal = document.getElementById("guestbook-modal");
+const openModalBtn = document.getElementById("write-guestbook");
+const closeModalBtn = document.getElementById("close-guestbook");
 const modalBg = document.getElementById("guestbook-modal-background");
 
 // 모달창 열기

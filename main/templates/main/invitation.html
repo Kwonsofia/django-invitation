@@ -254,9 +254,11 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
+            <button id="show-guestbook"><a href="{% url 'guestbooks' info.wedding_id %}">전체보기</a></button>
+            <button id="write-guestbook">작성하기</button>
         </div>
 
-        <div class="guestbook-modal">
+        <div id="guestbook-modal" style="display: none;">
             <form action="{% url 'guestbook' %}" , method="post">
                 {% csrf_token %}
                 <div id="guestbook-reg">
@@ -273,6 +275,7 @@
                 <input style="display: none;" type="text" name="wedding_id" id="inputID" value="{{ info.wedding_id }}"/>
                 <input id="write-button" type="submit" role="button" value="작성하기" />
             </form>
+            <button id="close-guestbook">닫기</button>
         </div>
     </div>
 

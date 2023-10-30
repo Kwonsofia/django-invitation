@@ -1,0 +1,30 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>방명록</h3>
+    <div class="comment-content">
+        {% if guestbook_list %}
+            {% for guestbook in guestbook_list %}
+                {% if guestbook.message %}
+                <div id="guestbook-content">
+                    <div id="comment-content-info">
+                        <div id="guestbook-name">{{ guestbook.name }}</div>
+                        <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d' }}</div>
+                    </div>
+                    <div>
+                        <div id="guestbook-message">{{ guestbook.message }}</div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

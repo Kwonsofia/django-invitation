@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
 from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook
 from .utils import wedding_date
 
@@ -15,7 +16,7 @@ def invitation(request, wedding_id):
     account = Account.objects.filter(wedding_id=wedding_id)
     address = Address.objects.filter(wedding_id=wedding_id)
     photos = Photo.objects.filter(wedding_id=wedding_id)
-    guestbook = GuestBook.objects.filter(wedding_id=wedding_id).order_by('-reg_dtime')
+    guestbooks = GuestBook.objects.filter(wedding_id=wedding_id).order_by('-reg_dtime')
 
     if not wedding:
         return render(request, 'main/error.html')
@@ -33,6 +34,14 @@ def invitation(request, wedding_id):
         else:
             photo_list.append(photo.img)
 
+    guestbook_list = []
+    for guestbook in guestbooks:
+
+        if guestbook.message:
+            guestbook_list.append(guestbook)
+        if len(guestbook_list) >= 3:
+            break
+
     data = {
         'info': wedding[0],
         'phone': phone[0],
@@ -42,10 +51,21 @@ def invitation(request, wedding_id):
         'sub_image': sub_image,
         'photos': photo_list,
         'date': wedding_date(wedding[0].wedding_date, wedding[0].wedding_time),
-        'guestbook_list': guestbook
+        'guestbook_list': guestbook_list
     }
 
     return render(request, 'main/invitation.html', data)
+
+
+def guestbook_list(request, wedding_id):
+    guestbook = GuestBook.objects.filter(wedding_id=wedding_id).order_by('-reg_dtime')
+
+    data = {
+        'guestbook_list': guestbook
+    }
+
+    return render(request, 'main/guestbook.html', data)
+
 
 def guestbook(request):
 
