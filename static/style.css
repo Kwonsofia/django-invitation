@@ -220,101 +220,7 @@ h3 {
     animation: scaleForward 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-/* Dimmed showing */
-@keyframes fadeIn {
-    0% {
-        background: transparent;
-    }
 
-    100% {
-        background: rgba(0, 0, 0, .7);
-    }
-}
-
-/* Show modal content from bottom to top */
-@keyframes scaleUp {
-    0% {
-        /* 모달 콘텐츠를 하단에 위치시킴 */
-        transform: scale(.8) translateY(1000px);
-        opacity: 0;
-    }
-
-    100% {
-        /* 모달 콘텐츠를 본래 위치로 돌려놓음 */
-        transform: scale(1) translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Shrink content */
-@keyframes scaleBack {
-    0% {
-        transform: scale(1);
-    }
-
-    100% {
-        transform: scale(.8);
-    }
-}
-
-/* Hide modal container*/
-@keyframes quickScaleDown {
-    0% {
-        transform: scale(1);
-    }
-
-    99.9% {
-        transform: scale(1);
-    }
-
-    100% {
-        transform: scale(0);
-    }
-}
-
-/* Dimmed hiding */
-@keyframes fadeOut {
-    0% {
-        background: rgba(0, 0, 0, .7);
-    }
-
-    100% {
-        background: transparent;
-    }
-}
-
-/* modal content from top to bottom */
-@keyframes scaleDown {
-    0% {
-        transform: scale(1) translateY(0);
-        opacity: 1;
-    }
-
-    100% {
-        transform: scale(.8) translateY(1000px);
-        opacity: 0;
-    }
-}
-
-@keyframes scaleBack {
-    0% {
-        transform: scale(1);
-    }
-
-    100% {
-        transform: scale(.85);
-    }
-}
-
-@keyframes scaleForward {
-    0% {
-        transform: scale(0.85);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
 
 /* Gallery */
 #slide {
@@ -598,4 +504,205 @@ li {
     height: 80%;
     font-size: x-small;
     color: #49301f;
+}
+
+/* Comment */
+#comment {
+    width: 100%;
+    margin: 0;
+}
+
+#comment>h3 {
+    padding: 10% 0;
+}
+
+#comment>div {
+    margin: 5%;
+}
+
+#guestbook-content {
+    padding: 10px;
+    margin: 10px 0;
+    background: #faf9f6;
+    border-radius: 10px;
+}
+
+#comment-content-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+#guestbook-reg>div>textarea {
+    resize: none;
+    width: 100%;
+    font-size: 15px;
+    border: 0;
+    background-color: #f7f3ec;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+    font-family: 'GowunBatang-Regular';
+}
+
+#guestbook-reg>div {
+    margin: 10px 0;
+}
+
+#guestbook-reg>div>input {
+    font-size: 15px;
+    border: 0;
+    background-color: #f7f3ec;
+    border-radius: 7px;
+    outline: none;
+    padding-left: 10px;
+    font-family: 'GowunBatang-Regular';
+}
+
+#write-button {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 30px;
+    margin: 20px 0;
+    border-radius: 3em;
+    border: 0;
+    color: #333;
+    font-family: 'GowunBatang-Regular';
+}
+
+#write-button:hover {
+    color: #fff;
+    background-color: #f8f2e9;
+}
+
+/*
+* ------------------------------
+* Revealing Animation
+* ------------------------------
+*/
+/* #guestbook-modal-container.write {
+    transform: scale(1);
+}
+
+#guestbook-modal-container.write .guestbook-modal-background {
+    background: transparent;
+    animation: fadeIn .5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#guestbook-modal-container.write .guestbook-modal-background .guestbook-modal {
+    opacity: 0;
+    animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#guestbook-modal-container.write.out {
+    animation: quickScaleDown 0s .5s linear forwards;
+}
+
+#guestbook-modal-container.write.out .guestbook-modal-background {
+    animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#guestbook-modal-container.write.out .guestbook-modal-background .guestbook-modal {
+    animation: scaleDown 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.comment-content.call.out {
+    animation: scaleForward 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+} */
+
+
+/* Dimmed showing */
+@keyframes fadeIn {
+    0% {
+        background: transparent;
+    }
+
+    100% {
+        background: rgba(0, 0, 0, .7);
+    }
+}
+
+/* Show modal content from bottom to top */
+@keyframes scaleUp {
+    0% {
+        /* 모달 콘텐츠를 하단에 위치시킴 */
+        transform: scale(.8) translateY(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        /* 모달 콘텐츠를 본래 위치로 돌려놓음 */
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Shrink content */
+@keyframes scaleBack {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(.8);
+    }
+}
+
+/* Hide modal container*/
+@keyframes quickScaleDown {
+    0% {
+        transform: scale(1);
+    }
+
+    99.9% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+/* Dimmed hiding */
+@keyframes fadeOut {
+    0% {
+        background: rgba(0, 0, 0, .7);
+    }
+
+    100% {
+        background: transparent;
+    }
+}
+
+/* modal content from top to bottom */
+@keyframes scaleDown {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(.8) translateY(1000px);
+        opacity: 0;
+    }
+}
+
+@keyframes scaleBack {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(.85);
+    }
+}
+
+@keyframes scaleForward {
+    0% {
+        transform: scale(0.85);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

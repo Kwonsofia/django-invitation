@@ -65,3 +65,4 @@ makemigrations VS migration
 - https://kante-kante.tistory.com/8
 - https://github.com/dkyou7/TIL/blob/master/%ED%8C%8C%EC%9D%B4%EC%8D%AC/Django/6.%20%5BDjango%5D%20%ED%8F%BC%20%EB%A7%8C%EB%93%A4%EA%B8%B0.md // models.py에서 참고
 - AWS서버 세팅 및 nginx/uwsgi/django 연동: https://nerogarret.tistory.com/48
+- 카카오 지도: https://bos.kr/kwa-manual_v-1668?pc=p

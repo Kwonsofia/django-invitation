@@ -1,5 +1,4 @@
 {% load static %}
-{% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 <!DOCTYPE html>
 <html lang="en">
@@ -143,7 +142,7 @@
     </div>
 
     <div class="part" id="gallery">
-        <!-- <h3>Gallery</h3> -->
+        <h3>Gallery</h3>
 
         <div id="slide">
             {% for photo in photos %}
@@ -157,7 +156,6 @@
 
     <div class="part" id="map">
         <h3>오시는 길</h3>
-        <!-- 참고: https://bos.kr/kwa-manual_v-1668?pc=p -->
         <div id="kakao-map">
             <div>
                 <a href="https://map.kakao.com/?urlX=520941.0&amp;urlY=1140835.0&amp;itemId=7976714&amp;q=%EC%8B%A0%EC%95%84%ED%83%80%EC%9A%B4&amp;srcid=7976714&amp;map_type=TYPE_MAP&amp;from=roughmap"
@@ -240,44 +238,50 @@
 
     <div class="part" id="comment">
         <h3>방명록</h3>
-        <table>
+        <div class="comment-content">
             {% if guestbook_list %}
                 {% for guestbook in guestbook_list %}
-                <tr>
-                    <td>{{ guestbook.name }}</td>
-                    <td>{{ guestbook.message }}</td>
-                    <td>{{ guestbook.reg_dtime }}</td>
-                </tr>
+                    {% if guestbook.message %}
+                    <div id="guestbook-content">
+                        <div id="comment-content-info">
+                            <div id="guestbook-name">{{ guestbook.name }}</div>
+                            <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d' }}</div>
+                        </div>
+                        <div>
+                            <div id="guestbook-message">{{ guestbook.message }}</div>
+                        </div>
+                    </div>
+                    {% endif %}
                 {% endfor %}
             {% endif %}
-        </table>
-        
-        <form action="{% url 'guestbook' %}" , method="post">
-            {% csrf_token %}
-            <div>
-                <label for="inputAuthor"><strong>이름</strong></label>
-                <div>
-                    <input type="text" name="name" id="inputAuthor" />
-                </div>
-                <label for="inputPasswd"><strong>비밀번호</strong></label>
-                <div>
-                    <input type="password" name="passwd" id="inputPasswd"></textarea>
-                </div>
-                <label for="inputMessage"><strong>내용</strong></label>
-                <div>
-                    <textarea type="text" name="message" id="inputMessage"></textarea>
+        </div>
+
+        <div class="guestbook-modal">
+            <form action="{% url 'guestbook' %}" , method="post">
+                {% csrf_token %}
+                <div id="guestbook-reg">
+                    <div>
+                        <input type="text" name="name" id="inputAuthor" placeholder="성함을 입력해주세요." required/>
+                    </div>
+                    <div>
+                        <input type="password" name="passwd" id="inputPasswd" placeholder="비밀번호를 입력해주세요." required>
+                    </div>
+                    <div>
+                        <textarea type="text" name="message" id="inputMessage" placeholder="내용을 입력해주세요." required></textarea>
+                    </div>
                 </div>
                 <input style="display: none;" type="text" name="wedding_id" id="inputID" value="{{ info.wedding_id }}"/>
-                <input type="submit" role="button" value="작성" />
-        </form>
+                <input id="write-button" type="submit" role="button" value="작성하기" />
+            </form>
+        </div>
     </div>
 
     <script src="{% static 'phone.js' %}"></script>
     <script src="{% static 'calender.js' %}"></script>
     <script src="{% static 'slide.js' %}"></script>
     <script src="{% static 'bank.js' %}"></script>
+    <script src="{% static 'guestbook.js' %}"></script>
 
 </body>
 
 </html>
-{% endblock %}

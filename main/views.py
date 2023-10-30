@@ -51,11 +51,12 @@ def guestbook(request):
 
     guestbook = GuestBook()
 
-    guestbook.name = request.POST['name']
-    guestbook.message = request.POST['message']
-    guestbook.wedding_id = request.POST['wedding_id']
-    guestbook.passwd = request.POST['passwd']
+    if request.POST['message']:
+        guestbook.name = request.POST['name']
+        guestbook.message = request.POST['message']
+        guestbook.wedding_id = request.POST['wedding_id']
+        guestbook.passwd = request.POST['passwd']
 
-    guestbook.save()
+        guestbook.save()
 
     return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))

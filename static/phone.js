@@ -25,18 +25,18 @@
 var button = document.querySelector(".button");
 var modalContainer = document.querySelector("#modal-container");
 var closeModal = document.querySelector('#close-modal')
-var phone = document.querySelector("#phone");
+var comment = document.querySelector("#phone");
 var btnId = "call";
 
 button.addEventListener("click", function () {
   modalContainer.removeAttribute("class");
   modalContainer.classList.add(btnId);
-  phone.classList.add("modal-active");
+  comment.classList.add("modal-active");
 });
 
 closeModal.addEventListener("click", function () {
   modalContainer.classList.add("out");
-  phone.classList.remove("modal-active");
+  comment.classList.remove("modal-active");
   // if (modalContainer.classList.contains(btnId)) {
   // }
 });
