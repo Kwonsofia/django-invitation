@@ -393,7 +393,7 @@ li {
     padding-top: 10px;
 }
 
-#daumRoughmapContainer1698729543108 {
+#kakao-map>div {
     /* font: normal normal 400 12px/normal dotum, sans-serif; */
     width: 100%;
     height: auto;

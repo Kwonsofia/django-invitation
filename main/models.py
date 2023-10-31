@@ -36,6 +36,8 @@ class Address(models.Model):
     wedding_id = models.ForeignKey(WeddingMain, on_delete=models.CASCADE)
     address = models.CharField(max_length=200)
     address_tel = models.CharField(max_length=100, null=True)
+    kakaomap_timestamp = models.IntegerField()
+    kakaomap_key = models.CharField(max_length=10)
 
 class GuestBook(models.Model):
     wedding_id = models.CharField(max_length=20)
