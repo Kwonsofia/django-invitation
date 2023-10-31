@@ -30,7 +30,15 @@
 }
 
 body {
-    margin: 5%;
+    margin: 0;
+}
+
+#main {
+    margin: 7%;
+}
+
+#guestbook-main {
+    margin: 0;
 }
 
 body,
@@ -553,6 +561,8 @@ li {
 
 #close-guestbook:before,
 #close-guestbook:after,
+#close-guestbooks:before,
+#close-guestbooks:after,
 #close-delete-guestbook:before,
 #close-delete-guestbook:after {
     position: absolute;
@@ -564,12 +574,14 @@ li {
 }
 
 #close-guestbook:before,
+#close-guestbooks:before,
 #delete-guestbook:before,
 #close-delete-guestbook:before {
     transform: rotate(45deg);
 }
 
 #close-guestbook:after,
+#close-guestbooks:after,
 #delete-guestbook:after,
 #close-delete-guestbook:after {
     transform: rotate(-45deg);
@@ -578,7 +590,7 @@ li {
 #delete-guestbook:before,
 #delete-guestbook:after {
     position: absolute;
-    right: 9%;
+    right: 10%;
     content: ' ';
     height: 10px;
     width: 1px;
@@ -623,6 +635,20 @@ li {
     height: 1px;
     background-color: #dedede;
     margin: 15px 0;
+}
+
+#guestbooks {
+    padding: 5% 0;
+    background-color: #f8f2e9;
+    text-align: center;
+}
+
+#guestbooks>p{
+    margin: 0;
+}
+
+#guestbook-main .comment-content {
+    margin: 5px 15px;
 }
 
 /*

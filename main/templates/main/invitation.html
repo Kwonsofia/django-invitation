@@ -11,295 +11,297 @@
 </head>
 
 <body>
-    <div class="part" id="mainImage">
-        <img src="{{ main_image.url }}">
-    </div>
-
-    <div class="part" id="introduce">
-        <div>
-            If we can’t accept limitations,
+    <div id="main">
+        <div class="part" id="mainImage">
+            <img src="{{ main_image.url }}">
         </div>
-        <div>
-            then we’re no better than the bad guys.
-        </div>
-        <div>– Iron Man</div>
-    </div>
-
-    <div class="part" id="subImage">
-        <img src="{{ sub_image.url }}">
-    </div>
-
-    <div class="part" id="phone">
-        <div class="content">
+    
+        <div class="part" id="introduce">
             <div>
-                <p>
-                    <span id="groom_father_name">{{ info.groom_father_name }}</span> & <span id="groom_mother_name">{{ info.groom_mother_name }}</span> <span class="rel"> &nbsp; 의 장남 &nbsp; </span> <span
-                        id="groom_name">{{ info.groom_name }}</span>
-                </p>
-                <p>
-                    <span id="bride_father_name">{{ info.bride_father_name }}</span> & <span id="bride_mother_name">{{ info.bride_mother_name }}</span> <span class="rel"> &nbsp; 의 장녀 &nbsp; </span> <span
-                        id="bride_name">{{ info.bride_name }}</span>
-                </p>
+                If we can’t accept limitations,
             </div>
-            <button id="call-phone" class="button">연락하기</a>
+            <div>
+                then we’re no better than the bad guys.
+            </div>
+            <div>– Iron Man</div>
         </div>
-
-        <div id="modal-container">
-            <div class="modal-background">
-                <div class="modal">
-                    <div>
-                        <p>CONTACT</p>
-                        <p>연락하기</p>
+    
+        <div class="part" id="subImage">
+            <img src="{{ sub_image.url }}">
+        </div>
+    
+        <div class="part" id="phone">
+            <div class="content">
+                <div>
+                    <p>
+                        <span id="groom_father_name">{{ info.groom_father_name }}</span> & <span id="groom_mother_name">{{ info.groom_mother_name }}</span> <span class="rel"> &nbsp; 의 장남 &nbsp; </span> <span
+                            id="groom_name">{{ info.groom_name }}</span>
+                    </p>
+                    <p>
+                        <span id="bride_father_name">{{ info.bride_father_name }}</span> & <span id="bride_mother_name">{{ info.bride_mother_name }}</span> <span class="rel"> &nbsp; 의 장녀 &nbsp; </span> <span
+                            id="bride_name">{{ info.bride_name }}</span>
+                    </p>
+                </div>
+                <button id="call-phone" class="button">연락하기</a>
+            </div>
+    
+            <div id="modal-container">
+                <div class="modal-background">
+                    <div class="modal">
+                        <div>
+                            <p>CONTACT</p>
+                            <p>연락하기</p>
+                        </div>
+                        <table id="groom_contact">
+                            <tr>
+                                <td>신랑</td>
+                                <td><span id="groom_name">{{ info.groom_name }}</span></td>
+                                <td id="groom_phone"><a class="number" href="tel:{{ phone.groom_phone }}">Call</a></td>
+                            </tr>
+                            <tr>
+                                <td>신랑아버지</td>
+                                <td><span id="groom_father_name">{{ info.groom_father_name }}</span></td>
+                                <td id="groom_father_phone"><a class="number"
+                                        href="tel:{{ phone.groom_father_phone }}">Call</a></td>
+                            </tr>
+                            <tr>
+                                <td>신랑어머니</td>
+                                <td><span id="groom_mother_name">{{ info.groom_mother_name }}</span></td>
+                                <td id="groom_mother_phone"><a class="number"
+                                        href="tel:{{ phone.groom_mother_phone }}">Call</a></td>
+                            </tr>
+                        </table>
+                        <hr>
+                        <table id="bride_contact">
+                            <tr>
+                                <td>신부</td>
+                                <td><span id="bride_name">{{ info.bride_name }}</span></td>
+                                <td id="bride_phone"><a class="number" href="tel:{{ phone.bride_phone }}">Call</a></td>
+                            </tr>
+                            <tr>
+                                <td>신부아버지</td>
+                                <td><span id="bride_father_name">{{ info.bride_father_name }}</span></td>
+                                <td id="bride_father_phone"><a class="number"
+                                        href="tel:{{ phone.bride_father_phone }}">Call</a></td>
+                            </tr>
+                            <tr>
+                                <td>신부어머니</td>
+                                <td><span id="bride_mother_name">{{ info.bride_mother_name }}</span></td>
+                                <td id="bride_mother_phone"><a class="number"
+                                        href="tel:{{ phone.bride_mother_phone }}">Call</a></td>
+                            </tr>
+    
+                        </table>
+                        <button id="close-modal">닫기</button>
                     </div>
-                    <table id="groom_contact">
-                        <tr>
-                            <td>신랑</td>
-                            <td><span id="groom_name">{{ info.groom_name }}</span></td>
-                            <td id="groom_phone"><a class="number" href="tel:{{ phone.groom_phone }}">Call</a></td>
-                        </tr>
-                        <tr>
-                            <td>신랑아버지</td>
-                            <td><span id="groom_father_name">{{ info.groom_father_name }}</span></td>
-                            <td id="groom_father_phone"><a class="number"
-                                    href="tel:{{ phone.groom_father_phone }}">Call</a></td>
-                        </tr>
-                        <tr>
-                            <td>신랑어머니</td>
-                            <td><span id="groom_mother_name">{{ info.groom_mother_name }}</span></td>
-                            <td id="groom_mother_phone"><a class="number"
-                                    href="tel:{{ phone.groom_mother_phone }}">Call</a></td>
-                        </tr>
-                    </table>
-                    <hr>
-                    <table id="bride_contact">
-                        <tr>
-                            <td>신부</td>
-                            <td><span id="bride_name">{{ info.bride_name }}</span></td>
-                            <td id="bride_phone"><a class="number" href="tel:{{ phone.bride_phone }}">Call</a></td>
-                        </tr>
-                        <tr>
-                            <td>신부아버지</td>
-                            <td><span id="bride_father_name">{{ info.bride_father_name }}</span></td>
-                            <td id="bride_father_phone"><a class="number"
-                                    href="tel:{{ phone.bride_father_phone }}">Call</a></td>
-                        </tr>
-                        <tr>
-                            <td>신부어머니</td>
-                            <td><span id="bride_mother_name">{{ info.bride_mother_name }}</span></td>
-                            <td id="bride_mother_phone"><a class="number"
-                                    href="tel:{{ phone.bride_mother_phone }}">Call</a></td>
-                        </tr>
-
-                    </table>
-                    <button id="close-modal">닫기</button>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="part" id="calender">
-        <h3>Day</h3>
-        <p style="display: none;">
-            <span id="wedding_year">{{ date.year }}</span>
-            <span id="wedding_month">{{ date.month }}</span>
-            <span id="wedding_day">{{ date.day }}</span>
-            <span id="wedding_time">{{ date.time }}</span>
-        </p>
-        <table id="calender-table">
-            <thead>
-                <tr>
-                    <td colspan="7">
-                        <span id="calYear"></span>.
-                        <span id="calMonth"></span>.
-                        <span id="calDay"></span>
-                        <br>
-                        <span id="calTime"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="7">
-                        <hr>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="sunday">일</td>
-                    <td>월</td>
-                    <td>화</td>
-                    <td>수</td>
-                    <td>목</td>
-                    <td>금</td>
-                    <td>토</td>
-                </tr>
-            </thead>
-
-            <tbody>
-            </tbody>
-        </table>
-        <div id="day-count">
-            결혼식이&nbsp;<span></span>
-            <p></p>
-        </div>
-    </div>
-
-    <div class="part" id="gallery">
-        <h3>Gallery</h3>
-
-        <div id="slide">
-            {% for photo in photos %}
-            <div class="slide_item"><img src="{{ photo.url }}" alt=""></div>
-            {% endfor %}
-            <div class="slide_prev_button slide_button"></div>
-            <div class="slide_next_button slide_button"></div>
-            <ul class="slide_pagination"></ul>
-        </div>
-    </div>
-
-    <div class="part" id="map">
-        <h3>오시는 길</h3>
-        <div id="kakao-map">
-            <div id="daumRoughmapContainer{{ address.kakaomap_timestamp }}" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-            <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-            <script charset="UTF-8">
-                new daum.roughmap.Lander({
-                    "timestamp" : "{{ address.kakaomap_timestamp }}",
-                    "key" : "{{ address.kakaomap_key }}",
-                }).render();
-            </script>
-        </div>
-        <div>
-            <p id="address">{{ address.address }}</p>
-            <p id="address_tel">{{ address.address_tel }}</p>
-        </div>
-    </div>
-
-    <div class="part" id="bank">
-        <h3>마음 전하실 곳</h3>
-        <div class="bank-list">
-            <div class="triggerToggle">
-                <p>신랑측</p>
-                <p>더보기</p>
-            </div>
-            <div class="target">
-                <table>
-                    <tr class="clipboard">
-                        <td id="groom_name">{{ info.groom_name }}</td>
-                        <td class="account" id="groom_account">{{ account.groom_account }}</td>
-                        <td><button>복사하기</button></td>
+    
+        <div class="part" id="calender">
+            <h3>Day</h3>
+            <p style="display: none;">
+                <span id="wedding_year">{{ date.year }}</span>
+                <span id="wedding_month">{{ date.month }}</span>
+                <span id="wedding_day">{{ date.day }}</span>
+                <span id="wedding_time">{{ date.time }}</span>
+            </p>
+            <table id="calender-table">
+                <thead>
+                    <tr>
+                        <td colspan="7">
+                            <span id="calYear"></span>.
+                            <span id="calMonth"></span>.
+                            <span id="calDay"></span>
+                            <br>
+                            <span id="calTime"></span>
+                        </td>
                     </tr>
-                    <tr class="clipboard">
-                        <td>[혼주] <span id="groom_father_name">{{ info.groom_father_name }}</span></td>
-                        <td class="account" id="groom_father_account">{{ account.groom_father_account }}</td>
-                        <td><button>복사하기</button></td>
+                    <tr>
+                        <td colspan="7">
+                            <hr>
+                        </td>
                     </tr>
-                </table>
+                    <tr>
+                        <td id="sunday">일</td>
+                        <td>월</td>
+                        <td>화</td>
+                        <td>수</td>
+                        <td>목</td>
+                        <td>금</td>
+                        <td>토</td>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                </tbody>
+            </table>
+            <div id="day-count">
+                결혼식이&nbsp;<span></span>
+                <p></p>
             </div>
         </div>
-        <div class="bank-list">
-            <div class="triggerToggle">
-                <p>신부측</p>
-                <p>더보기</p>
-            </div>
-            <div class="target">
-                <table>
-                    <tr class="clipboard">
-                        <td><span id="bride_name">{{ info.bride_name }}</span></td>
-                        <td class="account" id="bride_account">{{ account.bride_account }}</td>
-                        <td></td>
-                        <td><button>복사하기</button></td>
-                    </tr>
-                    <tr class="clipboard">
-                        <td>[혼주] <span id="bride_father_name">{{ info.bride_father_name }}</span></td>
-                        <td class="account" id="bride_father_account">{{ account.bride_father_account }}</td>
-                        <td></td>
-                        <td><button>복사하기</button></td>
-                    </tr>
-                </table>
+    
+        <div class="part" id="gallery">
+            <h3>Gallery</h3>
+    
+            <div id="slide">
+                {% for photo in photos %}
+                <div class="slide_item"><img src="{{ photo.url }}" alt=""></div>
+                {% endfor %}
+                <div class="slide_prev_button slide_button"></div>
+                <div class="slide_next_button slide_button"></div>
+                <ul class="slide_pagination"></ul>
             </div>
         </div>
-    </div>
-
-    <div class="part" id="comment">
-        <h3>방명록</h3>
-        <div class="comment-content">
-            {% if guestbook_list %}
-                {% for guestbook in guestbook_list %}
-                    {% if guestbook.message %}
-                    <div id="guestbook-content">
-                        <div id="comment-content-info">
-                            <div id="delete-guestbook"></div>
-                            <div id="guestbook-name">FROM. {{ guestbook.name }}</div>
-                        </div>
-                        <hr>
-                        <div>
-                            <div id="guestbook-message">{{ guestbook.message }}</div>
-                        </div>
-                        <div>
-                            <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d H:i:s' }}</div>
-                        </div>
-                        <div id="delete-modal">
-                            <div class="modal-background">
-                                <div class="modal">
-                                    <div>
-                                        <p id="close-delete-guestbook"></p>
-                                    </div>
-                                    <form action="{% url 'guestbook_delete' guestbook.msg_id %}", method="post">
-                                        {% csrf_token %}
+    
+        <div class="part" id="map">
+            <h3>오시는 길</h3>
+            <div id="kakao-map">
+                <div id="daumRoughmapContainer{{ address.kakaomap_timestamp }}" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+                <script charset="UTF-8">
+                    new daum.roughmap.Lander({
+                        "timestamp" : "{{ address.kakaomap_timestamp }}",
+                        "key" : "{{ address.kakaomap_key }}",
+                    }).render();
+                </script>
+            </div>
+            <div>
+                <p id="address">{{ address.address }}</p>
+                <p id="address_tel">{{ address.address_tel }}</p>
+            </div>
+        </div>
+    
+        <div class="part" id="bank">
+            <h3>마음 전하실 곳</h3>
+            <div class="bank-list">
+                <div class="triggerToggle">
+                    <p>신랑측</p>
+                    <p>더보기</p>
+                </div>
+                <div class="target">
+                    <table>
+                        <tr class="clipboard">
+                            <td id="groom_name">{{ info.groom_name }}</td>
+                            <td class="account" id="groom_account">{{ account.groom_account }}</td>
+                            <td><button>복사하기</button></td>
+                        </tr>
+                        <tr class="clipboard">
+                            <td>[혼주] <span id="groom_father_name">{{ info.groom_father_name }}</span></td>
+                            <td class="account" id="groom_father_account">{{ account.groom_father_account }}</td>
+                            <td><button>복사하기</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="bank-list">
+                <div class="triggerToggle">
+                    <p>신부측</p>
+                    <p>더보기</p>
+                </div>
+                <div class="target">
+                    <table>
+                        <tr class="clipboard">
+                            <td><span id="bride_name">{{ info.bride_name }}</span></td>
+                            <td class="account" id="bride_account">{{ account.bride_account }}</td>
+                            <td></td>
+                            <td><button>복사하기</button></td>
+                        </tr>
+                        <tr class="clipboard">
+                            <td>[혼주] <span id="bride_father_name">{{ info.bride_father_name }}</span></td>
+                            <td class="account" id="bride_father_account">{{ account.bride_father_account }}</td>
+                            <td></td>
+                            <td><button>복사하기</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+        <div class="part" id="comment">
+            <h3>방명록</h3>
+            <div class="comment-content">
+                {% if guestbook_list %}
+                    {% for guestbook in guestbook_list %}
+                        {% if guestbook.message %}
+                        <div id="guestbook-content">
+                            <div id="comment-content-info">
+                                <div id="delete-guestbook"></div>
+                                <div id="guestbook-name">FROM. {{ guestbook.name }}</div>
+                            </div>
+                            <hr>
+                            <div>
+                                <div id="guestbook-message">{{ guestbook.message }}</div>
+                            </div>
+                            <div>
+                                <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d H:i:s' }}</div>
+                            </div>
+                            <div id="delete-modal">
+                                <div class="modal-background">
+                                    <div class="modal">
                                         <div>
-                                            <label>비밀번호</label>
-                                            <input type="password" name="passwd" id="inputPasswd" required>
+                                            <p id="close-delete-guestbook"></p>
                                         </div>
-                                        <input style="display: none;" type="text" name="wedding_id" id="inputID" value="{{ info.wedding_id }}"/>
-                                        <input id="delete-button" type="submit" role="button" value="삭제하기" />
-                                    </form>
+                                        <form action="{% url 'guestbook_delete' guestbook.msg_id %}", method="post">
+                                            {% csrf_token %}
+                                            <div>
+                                                <label>비밀번호</label>
+                                                <input type="password" name="passwd" required>
+                                            </div>
+                                            <input style="display: none;" type="text" name="wedding_id" value="{{ info.wedding_id }}"/>
+                                            <input id="delete-button" type="submit" role="button" value="삭제하기" />
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+                            
                         </div>
-                        
-                    </div>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-            {% if messages %}
-                {% for message in messages %}
-                <script>
-                    alert("{{ message.message }}")
-                </script>
-                {% endfor %}
-            {% endif %}
-            <div id="comment-button">
-                <button id="show-guestbook"><a href="{% url 'guestbooks' info.wedding_id %}">전체보기</a></button>
-                <button id="write-guestbook">작성하기</button>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <script>
+                        alert("{{ message.message }}")
+                    </script>
+                    {% endfor %}
+                {% endif %}
+                <div id="comment-button">
+                    <button id="show-guestbook"><a href="{% url 'guestbooks' info.wedding_id %}">전체보기</a></button>
+                    <button id="write-guestbook">작성하기</button>
+                </div>
             </div>
-        </div>
-
-        <div id="guestbook-modal">
-            <div class="modal-background">
-                <div class="modal">
-                    <div>
-                        <p id="close-guestbook"></p>
-                        <p>GUESTBOOK</p>
-                        <p>방명록</p>
-                    </div>
-                    <form action="{% url 'guestbook' %}" , method="post">
-                        {% csrf_token %}
-                        <div id="guestbook-reg">
-                            <div>
-                                <label>이름</label>
-                                <input type="text" name="name" id="inputAuthor" required/>
-                            </div>
-                            <hr>
-                            <div>
-                                <label>비밀번호</label>
-                                <input type="password" name="passwd" id="inputPasswd" required>
-                            </div>
-                            <hr>
-                            <div>
-                                <textarea type="text" name="message" id="inputMessage" placeholder="내용을 입력해주세요." required></textarea>
-                            </div>
+    
+            <div id="guestbook-modal">
+                <div class="modal-background">
+                    <div class="modal">
+                        <div>
+                            <p id="close-guestbook"></p>
+                            <p>GUESTBOOK</p>
+                            <p>방명록</p>
                         </div>
-                        <input style="display: none;" type="text" name="wedding_id" id="inputID" value="{{ info.wedding_id }}"/>
-                        <input id="write-button" type="submit" role="button" value="작성하기" />
-                    </form>
+                        <form action="{% url 'guestbook' %}" , method="post">
+                            {% csrf_token %}
+                            <div id="guestbook-reg">
+                                <div>
+                                    <label>이름</label>
+                                    <input type="text" name="name" id="inputAuthor" required/>
+                                </div>
+                                <hr>
+                                <div>
+                                    <label>비밀번호</label>
+                                    <input type="password" name="passwd" required>
+                                </div>
+                                <hr>
+                                <div>
+                                    <textarea type="text" name="message" id="inputMessage" placeholder="내용을 입력해주세요." required></textarea>
+                                </div>
+                            </div>
+                            <input style="display: none;" type="text" name="wedding_id" value="{{ info.wedding_id }}"/>
+                            <input id="write-button" type="submit" role="button" value="작성하기" />
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

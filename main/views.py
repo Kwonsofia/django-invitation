@@ -62,8 +62,10 @@ def guestbook_list(request, wedding_id):
     guestbook = GuestBook.objects.filter(wedding_id=wedding_id).order_by('-reg_dtime')
 
     data = {
-        'guestbook_list': guestbook
+        'guestbook_list': guestbook,
     }
+
+    print(1212, data)
 
     return render(request, 'main/guestbook.html', data)
 
@@ -95,3 +97,17 @@ def guestbook_delete(request, msg_id):
         messages.warning(request, '비밀번호가 틀렸습니다.')
 
     return HttpResponseRedirect(f'/{guestbook.wedding_id}#comment')
+
+
+def guestbook_list_delete(request, msg_id):
+    passwd = request.POST['passwd']
+
+    guestbook = GuestBook.objects.get(msg_id=msg_id)
+
+    if guestbook.passwd == passwd:
+        guestbook.delete()
+        messages.success(request, '삭제되었습니다.')
+    else:
+        messages.warning(request, '비밀번호가 틀렸습니다.')
+
+    return HttpResponseRedirect(f'/{guestbook.wedding_id}/guestbook')

@@ -8,27 +8,59 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>방명록</h3>
-    <div class="comment-content">
-        {% if guestbook_list %}
-            {% for guestbook in guestbook_list %}
-                {% if guestbook.message %}
-                <div id="guestbook-content">
-                    <div id="comment-content-info">
-                        <a href="#"><div id="delete-guestbook"></div></a>
-                        <div id="guestbook-name">FROM. {{ guestbook.name }}</div>
+    <div id="guestbook-main">
+        <div id="guestbooks">
+            <p id="close-guestbooks"></p>
+            <p>GUESTBOOK</p>
+            <p>방명록</p>
+        </div>
+        <div class="comment-content">
+            {% if guestbook_list %}
+                {% for guestbook in guestbook_list %}
+                    {% if guestbook.message %}
+                    <div id="guestbook-content">
+                        <div id="comment-content-info">
+                            <div id="delete-guestbook"></div>
+                            <div id="guestbook-name">FROM. {{ guestbook.name }}</div>
+                        </div>
+                        <hr>
+                        <div>
+                            <div id="guestbook-message">{{ guestbook.message }}</div>
+                        </div>
+                        <div>
+                            <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d H:i:s' }}</div>
+                        </div>
+                        <div id="delete-modal">
+                            <div class="modal-background">
+                                <div class="modal">
+                                    <div>
+                                        <p id="close-delete-guestbook"></p>
+                                    </div>
+                                    <form action="{% url 'guestbook_list_delete' guestbook.msg_id %}", method="post">
+                                        {% csrf_token %}
+                                        <div>
+                                            <label>비밀번호</label>
+                                            <input type="password" name="passwd" required>
+                                        </div>
+                                        <input id="delete-button" type="submit" role="button" value="삭제하기" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <hr>
-                    <div>
-                        <div id="guestbook-message">{{ guestbook.message }}</div>
-                    </div>
-                    <div>
-                        <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d H:i:s' }}</div>
-                    </div>
-                </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                <script>
+                    alert("{{ message.message }}")
+                </script>
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
+    <script src="{% static 'guestbook_list.js' %}"></script>
 </body>
 </html>
