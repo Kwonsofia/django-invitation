@@ -496,19 +496,27 @@ li {
     color: #49301f;
 }
 
+#comment-button {
+    float: right;
+    margin: 0;
+}
+
 #write-button,
 #show-guestbook,
 #write-guestbook {
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    padding: 10px 20px;
-    margin: 20px 0;
+    padding: 7px 20px;
+    margin: 5px 0;
     border-radius: 3em;
     border: 0;
     color: #333;
     font-family: 'GowunBatang-Regular';
-    transition: all 0.1s; /* 트랜지션은 버튼에 적용 */
+}
+
+#write-button {
+    margin-top: 20px;
 }
 
 #show-guestbook>a {
@@ -521,7 +529,6 @@ li {
 #write-guestbook:hover {
     color: #fff;
     background-color: #f8f2e9;
-    transform: translateY(-10px);
 }
 
 #guestbook-modal {

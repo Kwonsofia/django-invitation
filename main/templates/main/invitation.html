@@ -240,8 +240,10 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
-            <button id="show-guestbook"><a href="{% url 'guestbooks' info.wedding_id %}">전체보기</a></button>
-            <button id="write-guestbook">작성하기</button>
+            <div id="comment-button">
+                <button id="show-guestbook"><a href="{% url 'guestbooks' info.wedding_id %}">전체보기</a></button>
+                <button id="write-guestbook">작성하기</button>
+            </div>
         </div>
 
         <div id="guestbook-modal">
