@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
+from django.contrib import messages
 from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook
 from .utils import wedding_date
 
@@ -89,5 +90,8 @@ def guestbook_delete(request, msg_id):
 
     if guestbook.passwd == passwd:
         guestbook.delete()
+        messages.success(request, '삭제되었습니다.')
+    else:
+        messages.warning(request, '비밀번호가 틀렸습니다.')
 
     return HttpResponseRedirect(f'/{guestbook.wedding_id}#comment')

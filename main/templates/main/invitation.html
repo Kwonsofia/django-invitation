@@ -254,8 +254,16 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                     {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                <script>
+                    alert("{{ message.message }}")
+                </script>
                 {% endfor %}
             {% endif %}
             <div id="comment-button">

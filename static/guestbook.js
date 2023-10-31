@@ -33,26 +33,8 @@ writeCloseModal.addEventListener("click", function () {
 });
 
 
-// var deleteButton = document.querySelector("#delete-guestbook");
-// var deleteModalContainer = document.querySelector("#delete-modal");
-// var deleteCloseModal = document.querySelector('#close-delete-guestbook')
-// var detail = document.querySelector("#guestbook-content");
-// var btnDeleteId = "delete";
-
-// deleteButton.addEventListener("click", function () {
-//   deleteModalContainer.removeAttribute("class");
-//   deleteModalContainer.classList.add(btnDeleteId);
-//   detail.classList.add("modal-active");
-// });
-
-// deleteCloseModal.addEventListener("click", function () {
-//   deleteModalContainer.classList.add("out");
-//   detail.classList.remove("modal-active");
-// });
-
 let deleteButtons = document.querySelectorAll("#guestbook-content");
 deleteButtons.forEach((target) => {
-  console.log(target)
   var deleteButton = target.querySelector("#delete-guestbook");
   var deleteModalContainer = target.querySelector("#delete-modal");
   var deleteCloseModal = target.querySelector('#close-delete-guestbook')
