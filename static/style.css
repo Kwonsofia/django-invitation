@@ -184,6 +184,10 @@ h3 {
     color: black;
 }
 
+.modal-active {
+    overflow: hidden;
+}
+
 /*
 * ------------------------------
 * Revealing Animation
@@ -389,65 +393,16 @@ li {
     padding-top: 10px;
 }
 
-#kakao-map {
-    font: normal normal 400 12px/normal dotum, sans-serif;
+#daumRoughmapContainer1698729543108 {
+    /* font: normal normal 400 12px/normal dotum, sans-serif; */
     width: 100%;
     height: auto;
-    color: #333;
-    position: relative
+    position: relative;
 }
 
 #map-img {
     width: 100%;
-    height: auto;
 }
-
-#kakao-map-menu {
-    overflow: hidden;
-    padding: 7px 11px;
-    border-radius: 0px 0px 2px 2px;
-    background-color: rgb(249, 249, 249);
-}
-
-#kakao-map-menu>a {
-    float: left;
-}
-
-#kakao-map-menu>a>img {
-    display: block;
-    width: auto;
-    height: 16px;
-
-}
-
-#kakao-map-menu>div {
-    float: right;
-    position: relative;
-    top: 1px;
-    font-size: 11px;
-}
-
-#kakao-map-menu>div>a {
-    float: left;
-    height: 15px;
-    padding-top: 1px;
-    line-height: 15px;
-    color: #000;
-    text-decoration: none;
-}
-
-#kakao-map-menu>div>span {
-    width: 1px;
-    padding: 0;
-    margin: 0 8px 0 9px;
-    height: 11px;
-    vertical-align: top;
-    position: relative;
-    top: 2px;
-    border-left: 1px solid #d0d0d0;
-    float: left;
-}
-
 
 /* Bank */
 #bank {
@@ -487,7 +442,7 @@ li {
 
 .target>table {
     width: 100%;
-    background-color: #fffbf4;
+    background-color: #faf9f6;
     padding: 0 5px 0 15px;
     color: #333;
 }
@@ -518,15 +473,27 @@ li {
 }
 
 #guestbook-content {
-    padding: 10px;
+    padding: 10px 15px;
     margin: 10px 0;
     background: #faf9f6;
     border-radius: 10px;
 }
 
-#comment-content-info {
+/* #comment-content-info {
     display: flex;
     justify-content: space-between;
+} */
+
+#guestbook-content>hr {
+    border: 0;
+    height: 1px;
+    background-color: #dedede;
+}
+
+#guestbook-date {
+    font-size: 0.7em;
+    text-align: right;
+    color: #49301f;
 }
 
 #write-button,
@@ -541,6 +508,7 @@ li {
     border: 0;
     color: #333;
     font-family: 'GowunBatang-Regular';
+    transition: all 0.1s; /* 트랜지션은 버튼에 적용 */
 }
 
 #show-guestbook>a {
@@ -553,6 +521,7 @@ li {
 #write-guestbook:hover {
     color: #fff;
     background-color: #f8f2e9;
+    transform: translateY(-10px);
 }
 
 #guestbook-modal {
@@ -578,15 +547,28 @@ li {
     content: ' ';
     height: 20px;
     width: 1px;
-    background-color: #000;
+    background-color: #49301f;
 }
 
-#close-guestbook:before {
+#close-guestbook:before,
+#delete-guestbook:before {
     transform: rotate(45deg);
 }
 
-#close-guestbook:after {
+#close-guestbook:after,
+#delete-guestbook:after {
     transform: rotate(-45deg);
+}
+
+#delete-guestbook:before,
+#delete-guestbook:after {
+    position: absolute;
+    right: 9%;
+    content: ' ';
+    height: 10px;
+    width: 1px;
+    background-color: #49301f;
+    margin: 5px;
 }
 
 #guestbook-reg>div {
@@ -614,7 +596,6 @@ li {
 #guestbook-reg>div>input {
     font-size: 15px;
     border: 0;
-    /* background-color: #f7f3ec; */
     border-radius: 7px;
     outline: none;
     font-family: 'GowunBatang-Regular';

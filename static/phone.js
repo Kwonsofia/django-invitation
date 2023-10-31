@@ -27,12 +27,14 @@ var phoneModalContainer = document.querySelector("#modal-container");
 var phoneCloseModal = document.querySelector('#close-modal')
 var phone = document.querySelector("#phone");
 var btnCallId = "call";
-
+var body = document.querySelector("body");
+console.log(body)
 
 callButton.addEventListener("click", function () {
   phoneModalContainer.removeAttribute("class");
   phoneModalContainer.classList.add(btnCallId);
   phone.classList.add("modal-active");
+  body.style.overflowY = "hidden";
 });
 
 phoneCloseModal.addEventListener("click", function () {
@@ -40,6 +42,7 @@ phoneCloseModal.addEventListener("click", function () {
   phone.classList.remove("modal-active");
   // if (modalContainer.classList.contains(btnId)) {
   // }
+  body.style.overflowY = "auto";
 });
 
 

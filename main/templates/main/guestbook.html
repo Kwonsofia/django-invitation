@@ -15,11 +15,15 @@
                 {% if guestbook.message %}
                 <div id="guestbook-content">
                     <div id="comment-content-info">
-                        <div id="guestbook-name">{{ guestbook.name }}</div>
-                        <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d' }}</div>
+                        <a href="#"><div id="delete-guestbook"></div></a>
+                        <div id="guestbook-name">FROM. {{ guestbook.name }}</div>
                     </div>
+                    <hr>
                     <div>
                         <div id="guestbook-message">{{ guestbook.message }}</div>
+                    </div>
+                    <div>
+                        <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d H:i:s' }}</div>
                     </div>
                 </div>
                 {% endif %}

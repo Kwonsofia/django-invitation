@@ -157,32 +157,14 @@
     <div class="part" id="map">
         <h3>오시는 길</h3>
         <div id="kakao-map">
-            <div>
-                <a href="https://map.kakao.com/?urlX=520941.0&amp;urlY=1140835.0&amp;itemId=7976714&amp;q=%EC%8B%A0%EC%95%84%ED%83%80%EC%9A%B4&amp;srcid=7976714&amp;map_type=TYPE_MAP&amp;from=roughmap"
-                    target="_blank">
-                    <img id="map-img"
-                        src="http://t1.daumcdn.net/roughmap/imgmap/5e7ac56c5adb4131b192346d8514f22bf9f7594699d98355242a4d724a81ff39"></a>
-            </div>
-            <div id="kakao-map-menu">
-                <a href="https://map.kakao.com" target="_blank">
-                    <img src="https://i.namu.wiki/i/lqKuo3i_ODZGkbxOA_df4Idn4_cm8GtgyKaSNwfxhX1H3J7Eewgnvbtyxgk2jVsEIHDFUbgdthaOL_tGm4yMMQ.svg"
-                        alt="카카오맵"></a>
-                <div><a target="_blank"
-                        href="https://map.kakao.com/?from=roughmap&amp;srcid=7976714&amp;confirmid=7976714&amp;q=%EC%8B%A0%EC%95%84%ED%83%80%EC%9A%B4&amp;rv=on">
-                        로드뷰
-                    </a>
-                    <span></span>
-                    <a target="_blank"
-                        href="https://map.kakao.com/?from=roughmap&amp;eName=%EC%8B%A0%EC%95%84%ED%83%80%EC%9A%B4&amp;eX=520941.0&amp;eY=1140835.0">
-                        길찾기
-                    </a>
-                    <span></span>
-                    <a target="_blank"
-                        href="https://map.kakao.com?map_type=TYPE_MAP&amp;from=roughmap&amp;srcid=7976714&amp;itemId=7976714&amp;q=%EC%8B%A0%EC%95%84%ED%83%80%EC%9A%B4&amp;urlX=520941.0&amp;urlY=1140835.0">
-                        지도 크게 보기
-                    </a>
-                </div>
-            </div>
+            <div id="daumRoughmapContainer1698729543108" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+            <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+            <script charset="UTF-8">
+                new daum.roughmap.Lander({
+                    "timestamp" : "1698729543108",
+                    "key" : "2gnjy",
+                }).render();
+            </script>
         </div>
         <div>
             <p id="address">{{ address.address }}</p>
@@ -244,11 +226,15 @@
                     {% if guestbook.message %}
                     <div id="guestbook-content">
                         <div id="comment-content-info">
-                            <div id="guestbook-name">{{ guestbook.name }}</div>
-                            <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d' }}</div>
+                            <a href="#"><div id="delete-guestbook"></div></a>
+                            <div id="guestbook-name">FROM. {{ guestbook.name }}</div>
                         </div>
+                        <hr>
                         <div>
                             <div id="guestbook-message">{{ guestbook.message }}</div>
+                        </div>
+                        <div>
+                            <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d H:i:s' }}</div>
                         </div>
                     </div>
                     {% endif %}

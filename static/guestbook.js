@@ -24,10 +24,10 @@ var btnWriteId = "write";
 writeButton.addEventListener("click", function () {
   guestbookModalContainer.removeAttribute("class");
   guestbookModalContainer.classList.add(btnWriteId);
-  phone.classList.add("modal-active");
+  comment.classList.add("modal-active");
 });
 
 writeCloseModal.addEventListener("click", function () {
   guestbookModalContainer.classList.add("out");
-  phone.classList.remove("modal-active");
+  comment.classList.remove("modal-active");
 });
