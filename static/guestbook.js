@@ -1,35 +1,33 @@
-// var button = document.querySelector("#comment-button");
-// var modalContainer = document.querySelector("#guestbook-modal-container");
-// var closeModal = document.querySelector('#comment-close-modal')
-// var comment = document.querySelector("#comment");
-// var btnId = "write";
+// const modal = document.getElementById("guestbook-modal");
+// const openModalBtn = document.getElementById("write-guestbook");
+// const closeModalBtn = document.getElementById("close-guestbook");
+// const modalBg = document.getElementById("guestbook-modal-background");
 
-// button.addEventListener("click", function () {
-//   modalContainer.removeAttribute("class");
-//   modalContainer.classList.add(btnId);
-//   comment.classList.add("modal-active");
+// // 모달창 열기
+// openModalBtn.addEventListener("click", () => {
+//   modal.style.display = "block";
+//   //   document.body.style.overflow = "hidden"; // 스크롤바 제거
 // });
 
-// closeModal.addEventListener("click", function () {
-//   modalContainer.classList.add("out");
-//   comment.classList.remove("modal-active");
-//   // if (modalContainer.classList.contains(btnId)) {
-//   // }
+// // 모달창 닫기
+// closeModalBtn.addEventListener("click", () => {
+//   modal.style.display = "none";
+//   //   document.body.style.overflow = "auto"; // 스크롤바 보이기
 // });
 
-const modal = document.getElementById("guestbook-modal");
-const openModalBtn = document.getElementById("write-guestbook");
-const closeModalBtn = document.getElementById("close-guestbook");
-const modalBg = document.getElementById("guestbook-modal-background");
+var writeButton = document.querySelector("#write-guestbook");
+var guestbookModalContainer = document.querySelector("#guestbook-modal");
+var writeCloseModal = document.querySelector('#close-guestbook')
+var comment = document.querySelector("#comment");
+var btnWriteId = "write";
 
-// 모달창 열기
-openModalBtn.addEventListener("click", () => {
-  modal.style.display = "block";
-  //   document.body.style.overflow = "hidden"; // 스크롤바 제거
+writeButton.addEventListener("click", function () {
+  guestbookModalContainer.removeAttribute("class");
+  guestbookModalContainer.classList.add(btnWriteId);
+  phone.classList.add("modal-active");
 });
 
-// 모달창 닫기
-closeModalBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-  //   document.body.style.overflow = "auto"; // 스크롤바 보이기
+writeCloseModal.addEventListener("click", function () {
+  guestbookModalContainer.classList.add("out");
+  phone.classList.remove("modal-active");
 });

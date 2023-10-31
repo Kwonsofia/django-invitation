@@ -22,21 +22,22 @@
 
 
 // 참고: https://webclub.tistory.com/581
-var button = document.querySelector(".button");
-var modalContainer = document.querySelector("#modal-container");
-var closeModal = document.querySelector('#close-modal')
-var comment = document.querySelector("#phone");
-var btnId = "call";
+var callButton = document.querySelector("#call-phone");
+var phoneModalContainer = document.querySelector("#modal-container");
+var phoneCloseModal = document.querySelector('#close-modal')
+var phone = document.querySelector("#phone");
+var btnCallId = "call";
 
-button.addEventListener("click", function () {
-  modalContainer.removeAttribute("class");
-  modalContainer.classList.add(btnId);
-  comment.classList.add("modal-active");
+
+callButton.addEventListener("click", function () {
+  phoneModalContainer.removeAttribute("class");
+  phoneModalContainer.classList.add(btnCallId);
+  phone.classList.add("modal-active");
 });
 
-closeModal.addEventListener("click", function () {
-  modalContainer.classList.add("out");
-  comment.classList.remove("modal-active");
+phoneCloseModal.addEventListener("click", function () {
+  phoneModalContainer.classList.add("out");
+  phone.classList.remove("modal-active");
   // if (modalContainer.classList.contains(btnId)) {
   // }
 });
