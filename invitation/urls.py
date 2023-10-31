@@ -26,5 +26,6 @@ urlpatterns = [
     path('<str:wedding_id>', views.invitation),
     path('<str:wedding_id>/guestbook/', views.guestbook_list, name='guestbooks'),
     path('guestbook/', views.guestbook, name='guestbook'),
+    path('<str:msg_id>/guestbook_delete/', views.guestbook_delete, name='guestbook_delete'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

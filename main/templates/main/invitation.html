@@ -226,7 +226,7 @@
                     {% if guestbook.message %}
                     <div id="guestbook-content">
                         <div id="comment-content-info">
-                            <a href="#"><div id="delete-guestbook"></div></a>
+                            <div id="delete-guestbook"></div>
                             <div id="guestbook-name">FROM. {{ guestbook.name }}</div>
                         </div>
                         <hr>
@@ -235,6 +235,24 @@
                         </div>
                         <div>
                             <div id="guestbook-date">{{ guestbook.reg_dtime|date:'Y-m-d H:i:s' }}</div>
+                        </div>
+                        <div id="delete-modal">
+                            <div class="modal-background">
+                                <div class="modal">
+                                    <div>
+                                        <p id="close-delete-guestbook"></p>
+                                    </div>
+                                    <form action="{% url 'guestbook_delete' guestbook.msg_id %}", method="post">
+                                        {% csrf_token %}
+                                        <div>
+                                            <label>비밀번호</label>
+                                            <input type="password" name="passwd" id="inputPasswd" required>
+                                        </div>
+                                        <input style="display: none;" type="text" name="wedding_id" id="inputID" value="{{ info.wedding_id }}"/>
+                                        <input id="delete-button" type="submit" role="button" value="삭제하기" />
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {% endif %}

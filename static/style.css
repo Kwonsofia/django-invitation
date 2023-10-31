@@ -184,10 +184,6 @@ h3 {
     color: black;
 }
 
-.modal-active {
-    overflow: hidden;
-}
-
 /*
 * ------------------------------
 * Revealing Animation
@@ -503,7 +499,8 @@ li {
 
 #write-button,
 #show-guestbook,
-#write-guestbook {
+#write-guestbook,
+#delete-button {
     display: inline-block;
     text-align: center;
     text-decoration: none;
@@ -515,7 +512,8 @@ li {
     font-family: 'GowunBatang-Regular';
 }
 
-#write-button {
+#write-button,
+#delete-button {
     margin-top: 20px;
 }
 
@@ -526,12 +524,14 @@ li {
 }
 
 #write-button:hover,
-#write-guestbook:hover {
+#write-guestbook:hover,
+#delete-button:hover {
     color: #fff;
     background-color: #f8f2e9;
 }
 
-#guestbook-modal {
+#guestbook-modal,
+#delete-modal {
     position: fixed;
     left: 0;
     top: 0;
@@ -547,8 +547,14 @@ li {
     padding: 10%;
 }
 
+#delete-modal>div>div>div>p {
+    height: 20px;
+}
+
 #close-guestbook:before,
-#close-guestbook:after {
+#close-guestbook:after,
+#close-delete-guestbook:before,
+#close-delete-guestbook:after {
     position: absolute;
     right: 9%;
     content: ' ';
@@ -558,12 +564,14 @@ li {
 }
 
 #close-guestbook:before,
-#delete-guestbook:before {
+#delete-guestbook:before,
+#close-delete-guestbook:before {
     transform: rotate(45deg);
 }
 
 #close-guestbook:after,
-#delete-guestbook:after {
+#delete-guestbook:after,
+#close-delete-guestbook:after {
     transform: rotate(-45deg);
 }
 
@@ -583,7 +591,8 @@ li {
     margin: 0 10%;
 }
 
-#guestbook-reg>div>label {
+#guestbook-reg>div>label,
+#delete-modal>div>div>form>div>label {
     margin-right: 10px;
 }
 
@@ -600,7 +609,8 @@ li {
     padding: 5%;
 }
 
-#guestbook-reg>div>input {
+#guestbook-reg>div>input,
+#delete-modal>div>div>form>div>input {
     font-size: 15px;
     border: 0;
     border-radius: 7px;
@@ -620,33 +630,40 @@ li {
 * Revealing Animation
 * ------------------------------
 */
-#guestbook-modal.write {
+#guestbook-modal.write,
+#delete-modal.delete {
     transform: scale(1);
 }
 
-#guestbook-modal.write .modal-background {
+#guestbook-modal.write .modal-background,
+#delete-modal.delete .modal-background {
     background: transparent;
     animation: fadeIn .5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-#guestbook-modal.write .modal-background .modal {
+#guestbook-modal.write .modal-background .modal,
+#delete-modal.delete .modal-background .modal {
     opacity: 0;
     animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-#guestbook-modal.write.out {
+#guestbook-modal.write.out,
+#delete-modal.delete.out {
     animation: quickScaleDown 0s .5s linear forwards;
 }
 
-#guestbook-modal.write.out .modal-background {
+#guestbook-modal.write.out .modal-background,
+#delete-modal.delete.out .modal-background {
     animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-#guestbook-modal.write.out .modal-background .modal {
+#guestbook-modal.write.out .modal-background .modal,
+#delete-modal.delete.out .modal-background .modal {
     animation: scaleDown 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.comment-content.write.out {
+.comment-content.write.out,
+#guestbook-content.delete.out {
     animation: scaleForward 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 

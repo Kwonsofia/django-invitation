@@ -68,7 +68,6 @@ def guestbook_list(request, wedding_id):
 
 
 def guestbook(request):
-
     guestbook = GuestBook()
 
     if request.POST['message']:
@@ -78,5 +77,17 @@ def guestbook(request):
         guestbook.passwd = request.POST['passwd']
 
         guestbook.save()
+
+    return HttpResponseRedirect(f'/{guestbook.wedding_id}#comment')
+
+
+def guestbook_delete(request, msg_id):
+    wedding_id = request.POST['wedding_id']
+    passwd = request.POST['passwd']
+
+    guestbook = GuestBook.objects.get(wedding_id=wedding_id, msg_id=msg_id)
+
+    if guestbook.passwd == passwd:
+        guestbook.delete()
 
     return HttpResponseRedirect(f'/{guestbook.wedding_id}#comment')
