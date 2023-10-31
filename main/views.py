@@ -79,4 +79,4 @@ def guestbook(request):
 
         guestbook.save()
 
-    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+    return HttpResponseRedirect(f'/{guestbook.wedding_id}#comment')

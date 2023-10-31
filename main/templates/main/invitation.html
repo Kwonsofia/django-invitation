@@ -41,7 +41,7 @@
                         id="bride_name">{{ info.bride_name }}</span>
                 </p>
             </div>
-            <button id="call" class="button">연락하기</a>
+            <button id="call-phone" class="button">연락하기</a>
         </div>
 
         <div id="modal-container">
@@ -258,24 +258,36 @@
             <button id="write-guestbook">작성하기</button>
         </div>
 
-        <div id="guestbook-modal" style="display: none;">
-            <form action="{% url 'guestbook' %}" , method="post">
-                {% csrf_token %}
-                <div id="guestbook-reg">
+        <div id="guestbook-modal">
+            <div class="modal-background">
+                <div class="modal">
                     <div>
-                        <input type="text" name="name" id="inputAuthor" placeholder="성함을 입력해주세요." required/>
+                        <p id="close-guestbook"></p>
+                        <p>GUESTBOOK</p>
+                        <p>방명록</p>
                     </div>
-                    <div>
-                        <input type="password" name="passwd" id="inputPasswd" placeholder="비밀번호를 입력해주세요." required>
-                    </div>
-                    <div>
-                        <textarea type="text" name="message" id="inputMessage" placeholder="내용을 입력해주세요." required></textarea>
-                    </div>
+                    <form action="{% url 'guestbook' %}" , method="post">
+                        {% csrf_token %}
+                        <div id="guestbook-reg">
+                            <div>
+                                <label>이름</label>
+                                <input type="text" name="name" id="inputAuthor" required/>
+                            </div>
+                            <hr>
+                            <div>
+                                <label>비밀번호</label>
+                                <input type="password" name="passwd" id="inputPasswd" required>
+                            </div>
+                            <hr>
+                            <div>
+                                <textarea type="text" name="message" id="inputMessage" placeholder="내용을 입력해주세요." required></textarea>
+                            </div>
+                        </div>
+                        <input style="display: none;" type="text" name="wedding_id" id="inputID" value="{{ info.wedding_id }}"/>
+                        <input id="write-button" type="submit" role="button" value="작성하기" />
+                    </form>
                 </div>
-                <input style="display: none;" type="text" name="wedding_id" id="inputID" value="{{ info.wedding_id }}"/>
-                <input id="write-button" type="submit" role="button" value="작성하기" />
-            </form>
-            <button id="close-guestbook">닫기</button>
+            </div>
         </div>
     </div>
 
