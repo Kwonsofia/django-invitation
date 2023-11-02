@@ -65,8 +65,6 @@ def guestbook_list(request, wedding_id):
         'guestbook_list': guestbook,
     }
 
-    print(1212, data)
-
     return render(request, 'main/guestbook.html', data)
 
 

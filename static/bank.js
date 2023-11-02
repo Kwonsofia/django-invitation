@@ -12,13 +12,6 @@
 //   divElement.classList.toggle("disable");
 // };
 
-let clipBoard = document.querySelectorAll(".clipboard");
-clipBoard.forEach((target) =>
-  target.querySelector("button").addEventListener("click", function () {
-    copyAccount(target);
-  })
-);
-
 function copyAccount(target) {
   var targetText = target.querySelector(".account");
   window.navigator.clipboard.writeText(targetText.textContent).then(() => {
@@ -26,13 +19,19 @@ function copyAccount(target) {
   });
 }
 
+let clipBoard = document.querySelectorAll(".clipboard");
+clipBoard.forEach((target) =>
+  target.querySelector("button").addEventListener("click", function () {
+    copyAccount(target);
+  })
+);
+
 // 토글 참고: https://jeongah-story.tistory.com/162
 let slideUp = (target, duration = 500) => {
   target.style.transitionProperty = "height, margin, padding";
   target.style.transitionDuration = duration + "ms";
   target.style.boxSizing = "border-box";
   target.style.height = target.offsetHeight + "px";
-  console.log(target);
   target.offsetHeight;
   target.style.overflow = "hidden";
   target.style.height = 0;

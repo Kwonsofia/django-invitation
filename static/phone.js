@@ -28,7 +28,6 @@ var phoneCloseModal = document.querySelector('#close-modal')
 var phone = document.querySelector("#phone");
 var btnCallId = "call";
 var body = document.querySelector("body");
-console.log(body)
 
 callButton.addEventListener("click", function () {
   phoneModalContainer.removeAttribute("class");

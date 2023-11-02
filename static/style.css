@@ -383,10 +383,13 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 0.7em;
+    color: #ab9886;
 }
 
-#day-count>span {
-    font-weight: 500;
+#day-count>span, #day-count>p {
+    font-size: 1.2em;
+    color: black;
 }
 
 

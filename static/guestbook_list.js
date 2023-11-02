@@ -18,8 +18,6 @@ deleteButtons.forEach((target) => {
   });
 });
 
-console.log(1111)
-
 document.querySelector('#close-guestbooks').addEventListener("click", function () {
   window.history.back();
 });
