@@ -13,10 +13,14 @@
 // };
 
 function copyAccount(target) {
-  var targetText = target.querySelector(".account");
-  window.navigator.clipboard.writeText(targetText.textContent).then(() => {
-    alert("계좌번호가 복사되었습니다 :)");
-  });
+  var copyElement = document.createElement('textarea');
+  copyElement.value = target.querySelector(".account").textContent;  
+  document.body.appendChild(copyElement);
+
+  copyElement.select();
+  document.execCommand("copy");
+  document.body.removeChild(copyElement);
+  alert("계좌번호가 복사되었습니다 :)");
 }
 
 let clipBoard = document.querySelectorAll(".clipboard");
