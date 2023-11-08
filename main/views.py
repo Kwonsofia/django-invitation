@@ -11,6 +11,20 @@ from .utils import wedding_date
 def index(request):
     return render(request, 'main/index.html')
 
+# Admin
+def login(request):
+    return render(request, 'main/admin/login.html')
+
+
+def register(request):
+    return render(request, 'main/admin/register.html')
+
+
+def admin(request, wedding_id):
+    return render(request, 'main/admin/mypage.html')
+
+
+# Invitation
 def invitation(request, wedding_id):
     wedding = WeddingMain.objects.filter(wedding_id=wedding_id)
     phone = Phone.objects.filter(wedding_id=wedding_id)

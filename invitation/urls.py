@@ -23,6 +23,9 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('user/admin/login', views.login),
+    path('user/admin/register', views.register),
+    path('user/admin/mypage/<str:wedding_id>', views.admin),
     path('<str:wedding_id>', views.invitation),
     path('<str:wedding_id>/guestbook/', views.guestbook_list, name='guestbooks'),
     path('guestbook/', views.guestbook, name='guestbook'),
