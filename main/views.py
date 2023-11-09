@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook
 from .utils import wedding_date
+from datetime import datetime
 
 
 # Create your views here.
@@ -54,7 +55,75 @@ def login(request):
         return render(request, 'main/admin/login.html')
 
 def register(request):
-    return render(request, 'main/admin/register.html')
+    if request.method == 'POST':
+        wedding_id = request.POST.get('wedding_id')
+
+        wedding_main = WeddingMain(
+            wedding_id=wedding_id,
+            passwd=request.POST['passwd'],
+            groom_name=request.POST['groom_name'],
+            bride_name=request.POST['bride_name'],
+            
+            groom_father_name=request.POST.get('groom_father_name'),
+            groom_mother_name=request.POST.get('groom_mother_name'),
+            bride_father_name=request.POST.get('bride_father_name'),
+            bride_mother_name=request.POST.get('bride_mother_name'),
+
+            use_guestbook=request.POST.get('use_guestbook', False),
+            wedding_date=request.POST['wedding_date'],
+            wedding_time=request.POST['wedding_time'],
+            reg_dtime=datetime.now(),
+        )
+        wedding_main.save()
+
+        user_wedding = WeddingMain.objects.get(wedding_id=wedding_id)
+
+        if not user_wedding:
+            messages.warning('회원 가입 실패')
+            return render(request, 'main/admin/login.html')
+        
+        phone = Phone(
+            wedding_id=user_wedding,
+            groom_phone=request.POST.get('groom_phone'),
+            groom_father_phone=request.POST.get('groom_father_phone'),
+            groom_mother_phone=request.POST.get('groom_mother_phone'),
+
+            bride_phone=request.POST.get('bride_phone'),
+            bride_father_phone=request.POST.get('bride_father_phone'),
+            bride_mother_phone=request.POST.get('bride_mother_phone'),
+        )
+        phone.save()
+
+        account = Account(
+            wedding_id=user_wedding,
+            groom_account=request.POST.get('groom_account'),
+            groom_father_account=request.POST.get('groom_father_account'),
+            bride_account=request.POST.get('bride_account'),
+            bride_father_account=request.POST.get('bride_father_account'),
+        )
+        account.save()
+
+        address = Address(
+            wedding_id=user_wedding,
+            address=request.POST['address'],
+            address_tel=request.POST.get('address_tel'),
+
+            kakaomap_timestamp=request.POST['kakaomap_timestamp'],
+            kakaomap_key=request.POST['kakaomap_key'],
+        )
+        address.save()
+
+        for p in request.FILES.get('img'):
+            photos = Photo(
+                wedding_id=user_wedding,
+                img=p,
+            )
+            photos.save()
+
+        messages.success('회원 성공, 로그인해주세요 :)')
+        return render(request, 'main/admin/login.html')
+    else:
+        return render(request, 'main/admin/register.html')
 
 
 def mypage(request, wedding_id):
