@@ -58,6 +58,10 @@ def register(request):
     if request.method == 'POST':
         wedding_id = request.POST.get('wedding_id')
 
+        if WeddingMain.objects.get(wedding_id=wedding_id):
+            messages.warning('이미 존재하는 유저입니다. 로그인 부탁드립니다.')
+            return HttpResponseRedirect('/user/admin/login')
+
         wedding_main = WeddingMain(
             wedding_id=wedding_id,
             passwd=request.POST['passwd'],
@@ -124,7 +128,7 @@ def register(request):
         messages.success('회원 성공, 로그인해주세요 :)')
         return HttpResponseRedirect('/user/admin/login')
     else:
-        return HttpResponseRedirect('/user/admin/register')
+        return render(request, 'main/admin/register.html')
 
 
 def mypage(request, wedding_id):
