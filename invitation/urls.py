@@ -23,9 +23,10 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('user/admin/login', views.login),
+    path('user/admin', views.admin_main),
+    path('user/admin/login', views.login, name='login'),
     path('user/admin/register', views.register),
-    path('user/admin/mypage/<str:wedding_id>', views.admin),
+    path('user/admin/mypage/<str:wedding_id>', views.mypage),
     path('<str:wedding_id>', views.invitation),
     path('<str:wedding_id>/guestbook/', views.guestbook_list, name='guestbooks'),
     path('guestbook/', views.guestbook, name='guestbook'),

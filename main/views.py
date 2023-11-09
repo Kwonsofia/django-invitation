@@ -1,7 +1,5 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.core.paginator import Paginator
 from django.contrib import messages
 from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook
 from .utils import wedding_date
@@ -11,17 +9,62 @@ from .utils import wedding_date
 def index(request):
     return render(request, 'main/index.html')
 
+
+def admin_user_info(wedding_id):
+    wedding = WeddingMain.objects.filter(wedding_id=wedding_id)
+    phone = Phone.objects.filter(wedding_id=wedding_id)
+    account = Account.objects.filter(wedding_id=wedding_id)
+    address = Address.objects.filter(wedding_id=wedding_id)
+    photos = Photo.objects.filter(wedding_id=wedding_id)
+
+    if not wedding:
+        return None
+
+    data = {
+        'info': wedding[0],
+        'phone': phone[0],
+        'account': account[0],
+        'address': address[0],
+        'photos': photos,
+        'date': wedding_date(wedding[0].wedding_date, wedding[0].wedding_time),
+    }
+
+    return data
+
+
 # Admin
-def login(request):
+def admin_main(request):
     return render(request, 'main/admin/login.html')
+
+
+def login(request):
+    wedding_id = request.POST['wedding_id']
+    pw = request.POST['pw']
+
+    wedding = WeddingMain.objects.filter(wedding_id=wedding_id)
+
+    if not wedding:
+        messages.warning(request, '없는 유저입니다.')
+        return render(request, 'main/admin/register.html')
+
+    elif wedding[0].passwd != pw:
+        messages.warning(request, '비밀번호가 틀렸습니다.')
+        return render(request, 'main/admin/login.html')
+
+    return mypage(request, wedding_id)
 
 
 def register(request):
     return render(request, 'main/admin/register.html')
 
 
-def admin(request, wedding_id):
-    return render(request, 'main/admin/mypage.html')
+def mypage(request, wedding_id):
+    result = admin_user_info(wedding_id)
+
+    if not result:
+        return render(request, 'main/admin/login.html')
+
+    return render(request, 'main/admin/mypage.html', result)
 
 
 # Invitation
