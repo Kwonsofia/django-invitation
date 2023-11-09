@@ -28,9 +28,9 @@ urlpatterns = [
     path('user/admin/register', views.register),
     path('user/admin/mypage/<str:wedding_id>', views.mypage),
     path('<str:wedding_id>', views.invitation),
-    path('<str:wedding_id>/guestbook/', views.guestbook_list, name='guestbooks'),
-    path('guestbook/', views.guestbook, name='guestbook'),
-    path('guestbook/delete/<str:msg_id>/', views.guestbook_delete, name='guestbook_delete'),
-    path('guestbooks/delete/<str:msg_id>/', views.guestbook_list_delete, name='guestbook_list_delete'),
+    path('<str:wedding_id>/guestbook', views.guestbook_list, name='guestbooks'),
+    path('guestbook', views.guestbook, name='guestbook'),
+    path('guestbook/delete/<str:msg_id>', views.guestbook_delete, name='guestbook_delete'),
+    path('guestbooks/delete/<str:msg_id>', views.guestbook_list_delete, name='guestbook_list_delete'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
