@@ -80,7 +80,7 @@ def register(request):
 
         if not user_wedding:
             messages.warning('회원 가입 실패')
-            return render(request, 'main/admin/login.html')
+            return HttpResponseRedirect('/user/admin/register')
         
         phone = Phone(
             wedding_id=user_wedding,
@@ -113,17 +113,18 @@ def register(request):
         )
         address.save()
 
-        for p in request.FILES.get('img'):
-            photos = Photo(
-                wedding_id=user_wedding,
-                img=p,
-            )
-            photos.save()
+        if request.FILES.get('img'):
+            for p in request.FILES.get('img'):
+                photos = Photo(
+                    wedding_id=user_wedding,
+                    img=p,
+                )
+                photos.save()
 
         messages.success('회원 성공, 로그인해주세요 :)')
-        return render(request, 'main/admin/login.html')
+        return HttpResponseRedirect('/user/admin/login')
     else:
-        return render(request, 'main/admin/register.html')
+        return HttpResponseRedirect('/user/admin/register')
 
 
 def mypage(request, wedding_id):
