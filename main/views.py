@@ -33,26 +33,25 @@ def admin_user_info(wedding_id):
 
 
 # Admin
-def admin_main(request):
-    return render(request, 'main/admin/login.html')
-
-
 def login(request):
-    wedding_id = request.POST['wedding_id']
-    pw = request.POST['pw']
+    if request.method == 'POST':
+        wedding_id = request.POST['wedding_id']
+        pw = request.POST['pw']
 
-    wedding = WeddingMain.objects.filter(wedding_id=wedding_id)
+        wedding = WeddingMain.objects.filter(wedding_id=wedding_id)
 
-    if not wedding:
-        messages.warning(request, '없는 유저입니다.')
-        return render(request, 'main/admin/register.html')
+        if not wedding:
+            messages.warning(request, '없는 유저입니다.')
+            return render(request, 'main/admin/register.html')
 
-    elif wedding[0].passwd != pw:
-        messages.warning(request, '비밀번호가 틀렸습니다.')
+        elif wedding[0].passwd != pw:
+            messages.warning(request, '비밀번호가 틀렸습니다.')
+            return render(request, 'main/admin/login.html')
+
+        return mypage(request, wedding_id)
+
+    else:
         return render(request, 'main/admin/login.html')
-
-    return mypage(request, wedding_id)
-
 
 def register(request):
     return render(request, 'main/admin/register.html')
