@@ -1,0 +1,168 @@
+@font-face {
+    /* 고운 바탕체보다 조금 두꺼운 */
+    font-family: 'RIDIBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    /* 글씨체 사이즈 변경하면 이쁠 것 같음, 영어 글씨 이쁨 */
+    font-family: 'iceJaram-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/iceJaram-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+* {
+    margin: 0;
+    border: none;
+}
+
+body {
+    font-size: 20px;
+    font-family: 'iceJaram-Rg', sans-serif;
+}
+
+h2 {
+    text-align: center;
+    background-color: rgb(243, 241, 239);
+    font-size: 24px;
+    color: rgb(38, 30, 19);
+}
+
+.register-wrapper,
+.login-wrapper {
+    width: 100%;
+    height: auto;
+    padding: 40px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.register-wrapper>h2,
+.login-wrapper>h2 {
+    margin-bottom: 40px;
+}
+
+#login-form>input {
+    width: 100%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+}
+
+#login-form>input::placeholder {
+    color: #D2D2D2;
+    font-size: 1.4em;
+    font-family: 'iceJaram-Rg', sans-serif;
+}
+
+#login-form>#button {
+    color: rgb(38, 30, 19);
+    font-size: 1em;
+    background-color: rgb(231, 226, 219);
+    margin-top: 20px;
+    font-family: 'iceJaram-Rg', sans-serif;
+}
+
+#login-form>#button:hover {
+    background-color: rgb(107, 96, 81);
+    color: rgb(231, 226, 219);
+}
+
+#register-button,
+button {
+    width: 100%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+    color: rgb(38, 30, 19);
+    font-size: 1em;
+    background-color: rgb(231, 226, 219);
+    font-family: 'iceJaram-Rg', sans-serif;
+}
+
+button>a {
+    text-decoration: none;
+}
+
+#register-button:hover,
+button:hover {
+    background-color: rgb(107, 96, 81);
+    color: rgb(231, 226, 219);
+}
+
+#register-button {
+    margin: 20px 0;
+}
+
+#register-form,
+label {
+    color: rgb(18, 14, 10);
+    font-size: 0.9em;
+}
+
+td {
+    text-align: center;
+}
+
+h4 {
+    color: rgb(60, 51, 43);
+}
+
+#register-form>h3 {
+    color: rgb(89, 77, 61);
+    margin-top: 40px;
+}
+
+#register-form>table {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.section input {
+    border-radius: 6px;
+    background-color: rgb(243, 241, 239);
+    padding: 2px;
+}
+
+#img-input {
+    padding: 5px;
+}
+
+.section {
+    padding: 10px 0;
+}
+
+.info-sentenct {
+    color: rgba(243, 241, 239, 0.102);
+}
+
+#kakao-map-description {
+    font-size: 0.8em;
+    padding: 10px;
+    background-color: rgba(243, 241, 239, 0.102);
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #e9e9e9;
+}
+
+span {
+    font-size: 1.2em;
+    color: rgb(20, 12, 3);
+}
+
+hr {
+    margin: 15px 0;
+    /* transform: scaleY(0.5); */
+    border: 0;
+    height: 1px;
+    background-color: #dedede;
+}

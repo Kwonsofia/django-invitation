@@ -11,11 +11,15 @@
 </head>
 
 <body>
-    <div>
+    <div class="register-wrapper">
+        <h2>Register</h2>
         <form id="register-form" action="{% url 'register' %}", method="post">
             {% csrf_token %}
-            <fieldset>
-                <legend>Wedding</legend>
+            <h3>Wedding</h3>
+            <hr>
+            <p class="info-sentence">Wedding 필드에 있는 정보는 모두 입력해주셔야 합니다.</p>
+            <p class="info-sentence">ID가 test인 경우 모바일 청첩장 주소는 https://www.wedding.com/test 입니다.</p>
+            <div class="section" id="wedding">
                 <table>
                     <tr>
                         <td>
@@ -24,7 +28,6 @@
                         <td>
                             <input type="text" name="wedding_id" required>
                         </td>
-                        <p>* ID가 test인 경우 모바일 청첩장 주소는 https://www.wedding.com/test 입니다.</p>
                     </tr>
                     <tr>
                         <td>
@@ -52,18 +55,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>신랑 계좌번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="groom_account">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <label>신부 이름</label>
                         </td>
                         <td>
-                            <input type="text" name="bride_name">
+                            <input type="text" name="bride_name" required>
                         </td>
                     </tr>
                     <tr>
@@ -71,15 +66,7 @@
                             <label>신부 전화번호</label>
                         </td>
                         <td>
-                            <input type="text" name="bride_phone">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>신부 계좌번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="bride_account">
+                            <input type="text" name="bride_phone" required>
                         </td>
                     </tr>
                     <tr>
@@ -100,6 +87,22 @@
                     </tr>
                     <tr>
                         <td>
+                            <label>방명록 사용 여부</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="user_guestbook">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <h3>Address</h3>
+            <hr>
+            <p class="info-sentence">식장 전화번호를 제외하고 모두 입력해주셔야 합니다.</p>
+            <div class="section" id="address">
+                <table>
+                    <tr>
+                        <td>
                             <label>식장 주소</label>
                         </td>
                         <td>
@@ -108,7 +111,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>식장 번호</label>
+                            <label>식장 전화번호</label>
                         </td>
                         <td>
                             <input type="text" name="address_tel">
@@ -116,7 +119,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>카카오맵 Timestamp <a href="#kakao-map-description">(확인하는 방법)</a></label>
+                            <label>카카오맵 Timestamp</label>
                         </td>
                         <td>
                             <input type="text" name="kakaomap_timestamp" required>
@@ -130,22 +133,36 @@
                             <input type="text" name="kakaomap_key" required>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <label>방명록 사용 여부</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="user_guestbook">
-                        </td>
-                    </tr>
                 </table>
-            </fieldset>
-            <fieldset>
-                <legend>Parent</legend>
+                <br>
+                <div id="kakao-map-description">
+                    <span>카카오맵 Timestamp, Key 확인하는 방법 (PC)</span>
+                    <br>
+                    <br>
+                    1. 카카오맵에서 식장 검색
+                    <br>
+                    2. 검색 후 나오는 핀 클릭 후 공유하기 버튼 클릭
+                    <br>
+                    3. HTML 태그 복사 클릭
+                    <br>
+                    <img src="C:\Users\hmkwon\Desktop\hm\Test\Django\invitation\django-invitation\media\img\user_admin_kakao1.PNG">
+                    <br>
+                    4. 소스 생성하기 클릭
+                    <br>
+                    5. 일반지도(기본) 소스내용 중 timestamp, key 값 입력
+                    <br>
+                    <img src="C:\Users\hmkwon\Desktop\hm\Test\Django\invitation\django-invitation\media\img\user_admin_kakao2.PNG">
+                </div>
+            </div>
+
+            <h3>Parent</h3>
+            <hr>
+            <div class="section" id="phone_groom">
+                <h4>신랑</h4>
                 <table>
                     <tr>
                         <td>
-                            <label>신랑 아버지 이름</label>
+                            <label>아버지 성함</label>
                         </td>
                         <td>
                             <input type="text" name="groom_father_name">
@@ -153,7 +170,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>신랑 어머니 이름</label>
+                            <label>어머니 성함</label>
                         </td>
                         <td>
                             <input type="text" name="groom_mother_name">
@@ -161,7 +178,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>신랑 아버지 전화번호</label>
+                            <label>아버지 전화번호</label>
                         </td>
                         <td>
                             <input type="text" name="groom_father_phone">
@@ -169,31 +186,20 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>신랑 어머니 전화번호</label>
+                            <label>어머니 전화번호</label>
                         </td>
                         <td>
                             <input type="text" name="groom_mother_phone">
                         </td>
                     </tr>
+                </table>
+            </div>
+            <div class="section" id="phone_bride">
+                <h4>신부</h4>
+                <table>
                     <tr>
                         <td>
-                            <label>신랑 아버지 계좌번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="groom_father_account">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>신랑 어머니 계좌번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="groom_mother_account">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>신부 아버지 이름</label>
+                            <label>아버지 성함</label>
                         </td>
                         <td>
                             <input type="text" name="bride_father_name">
@@ -201,7 +207,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>신부 어머니 이름</label>
+                            <label>어머니 성함</label>
                         </td>
                         <td>
                             <input type="text" name="bride_mother_name">
@@ -209,7 +215,68 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>신부 아버지 계좌번호</label>
+                            <label>아버지 전화번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_father_phone">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>어머니 전화번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_mother_phone">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Account</h3>
+            <hr>
+            <div class="section" id="account_groom">
+                <h4>신랑</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <label>계좌번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_account">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>아버지 계좌번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_father_account">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>어머니 계좌번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_mother_account">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="section" id="account_bride">
+                <h4>신부</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <label>계좌번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_account">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>아버지 계좌번호</label>
                         </td>
                         <td>
                             <input type="text" name="bride_father_account">
@@ -217,33 +284,29 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>신부 어머니 계좌번호</label>
+                            <label>어머니 계좌번호</label>
                         </td>
                         <td>
                             <input type="text" name="bride_mother_account">
                         </td>
                     </tr>
                 </table>
-            </fieldset>
-            <fieldset>
-                <legend>Photos</legend>
-                <p>사진 업로드시 주의할 점</p>
-                <p>위에 작성하신 ID를 포함한 파일명으로 수정 후 업로드 부탁드립니다.</p>
-                <p>ex) ID가 test인 경우 test_1.png / test_2.jpg</p>
-                <input type="file" name="files[]" name="img" multiple>
-            </fieldset>
-            <input name="write-button" type="submit" role="button" value="작성하기" />
+            </div>
+            
+            <h3>Photos</h3>
+            <hr>
+            <p class="info-sentence">
+                <span>사진 업로드시 주의할 점</span>
+                <br>
+                위에 작성하신 ID를 포함한 파일명으로 수정 후 업로드 부탁드립니다.
+                <br>
+                ex) ID가 test인 경우 test_1.png / test_2.jpg
+            </p>
+            <div class="section" id="photos">
+                <input type="file" name="files[]" name="img" id="img-input" multiple>
+            </div>
+            <input name="write-button" type="submit" role="button" id="register-button" value="Register" />
         </form>
-        <div name="kakao-map-description">
-            <p>카카오맵 Timestamp, Key 확인하는 방법 (PC)</p>
-            <p>1. 카카오맵에서 식장 검색</p>
-            <p>2. 검색 후 나오는 핀 클릭 후 공유하기 버튼 클릭</p>
-            <p>3. HTML 태그 복사 클릭</p>
-            <img src="C:\Users\hmkwon\Desktop\hm\Test\Django\invitation\django-invitation\media\img\user_admin_kakao1.PNG">
-            <P>4. 소스 생성하기 클릭</P>
-            <P>5. 일반지도(기본) 소스내용 중 timestamp, key 값 입력</P>
-            <img src="C:\Users\hmkwon\Desktop\hm\Test\Django\invitation\django-invitation\media\img\user_admin_kakao2.PNG">
-        </div>
     </div>
 </body>
 
