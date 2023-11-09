@@ -225,16 +225,27 @@
                 </div>
                 <div class="target">
                     <table>
+                        {% if accout.groom_account %}
                         <tr class="clipboard">
                             <td id="groom_name">{{ info.groom_name }}</td>
                             <td class="account" id="groom_account">{{ account.groom_account }}</td>
                             <td><button>복사하기</button></td>
                         </tr>
+                        {% endif %}
+                        {% if accout.groom_father_account %}
                         <tr class="clipboard">
                             <td><span id="groom_father_name">{{ info.groom_father_name }}</span></td>
                             <td class="account" id="groom_father_account">{{ account.groom_father_account }}</td>
                             <td><button>복사하기</button></td>
                         </tr>
+                        {% endif %}
+                        {% if accout.groom_mother_account %}
+                        <tr class="clipboard">
+                            <td><span id="groom_mother_name">{{ info.groom_mother_name }}</span></td>
+                            <td class="account" id="groom_mother_account">{{ account.groom_mother_account }}</td>
+                            <td><button>복사하기</button></td>
+                        </tr>
+                        {% endif %}
                     </table>
                 </div>
             </div>
@@ -245,18 +256,30 @@
                 </div>
                 <div class="target">
                     <table>
+                        {% if accout.bride_account %}
                         <tr class="clipboard">
                             <td><span id="bride_name">{{ info.bride_name }}</span></td>
                             <td class="account" id="bride_account">{{ account.bride_account }}</td>
                             <td></td>
                             <td><button>복사하기</button></td>
                         </tr>
+                        {% endif %}
+                        {% if accout.bride_father_account %}
                         <tr class="clipboard">
                             <td><span id="bride_father_name">{{ info.bride_father_name }}</span></td>
                             <td class="account" id="bride_father_account">{{ account.bride_father_account }}</td>
                             <td></td>
                             <td><button>복사하기</button></td>
                         </tr>
+                        {% endif %}
+                        {% if accout.bride_mother_account %}
+                        <tr class="clipboard">
+                            <td><span id="bride_mother_name">{{ info.bride_mother_name }}</span></td>
+                            <td class="account" id="bride_mother_account">{{ account.bride_mother_account }}</td>
+                            <td></td>
+                            <td><button>복사하기</button></td>
+                        </tr>
+                        {% endif %}
                     </table>
                 </div>
             </div>
