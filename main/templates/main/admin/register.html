@@ -309,6 +309,7 @@
             </div>
             <input name="write-button" type="submit" role="button" id="register-button" value="Register" />
         </form>
+        <a href="{% url 'login' %}"><button>Login</button></a>
 
         {% if messages %}
             {% for message in messages %}

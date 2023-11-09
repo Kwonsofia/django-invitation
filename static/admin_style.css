@@ -171,3 +171,7 @@ hr {
     height: 1px;
     background-color: #dedede;
 }
+
+#photos {
+    margin-bottom: 40px;
+}
