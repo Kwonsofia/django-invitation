@@ -12,9 +12,11 @@
 
 <body>
     <div id="main">
+        {% if main_image %}
         <div class="part" id="mainImage">
             <img src="{{ main_image.url }}">
         </div>
+        {% endif %}
     
         <div class="part" id="introduce">
             <div>
@@ -25,26 +27,56 @@
             </div>
             <div>– Iron Man</div>
         </div>
-    
+
+        {% if sub_image %}
         <div class="part" id="subImage">
             <img src="{{ sub_image.url }}">
         </div>
+        {% endif %}
     
         <div class="part" id="phone">
             <div class="content">
                 <div>
                     <p>
-                        <span id="groom_father_name">{{ info.groom_father_name }}</span> & <span id="groom_mother_name">{{ info.groom_mother_name }}</span> <span class="rel"> &nbsp; 의 장남 &nbsp; </span> <span
-                            id="groom_name">{{ info.groom_name }}</span>
+                        {% if info.groom_father_name %}
+                        <span id="groom_father_name">{{ info.groom_father_name }}</span> 
+                        {% endif %}
+                        {% if info.groom_father_name and info.groom_mother_name %}
+                        & 
+                        {% endif %}
+                        {% if info.groom_mother_name %}
+                        <span id="groom_mother_name">{{ info.groom_mother_name }}</span> 
+                        {% endif %}
+                        {% if info.groom_father_name or info.groom_mother_name %}
+                        의 <span class="rel"> &nbsp; {{ info.groom_title }} &nbsp; </span>
+                        {% else %}
+                        <span class="rel"> &nbsp; 신랑 &nbsp; </span>
+                        {% endif %}
+                        
+                        <span id="groom_name">{{ info.groom_name }}</span>
                     </p>
                     <p>
-                        <span id="bride_father_name">{{ info.bride_father_name }}</span> & <span id="bride_mother_name">{{ info.bride_mother_name }}</span> <span class="rel"> &nbsp; 의 장녀 &nbsp; </span> <span
-                            id="bride_name">{{ info.bride_name }}</span>
+                        {% if info.bride_father_name %}
+                        <span id="bride_father_name">{{ info.bride_father_name }}</span> 
+                        {% endif %}
+                        {% if info.bride_father_name and info.bride_mother_name %}
+                        & 
+                        {% endif %}
+                        {% if info.bride_mother_name %}
+                        <span id="bride_mother_name">{{ info.bride_mother_name }}</span> 
+                        {% endif %}
+                        {% if info.bride_father_name or info.bride_mother_name %}
+                        의 <span class="rel"> &nbsp; {{ info.bride_title }} &nbsp; </span>
+                        {% else %}
+                        <span class="rel"> &nbsp; 신부 &nbsp; </span> 
+                        {% endif %}
+                        <span id="bride_name">{{ info.bride_name }}</span>
                     </p>
                 </div>
                 <button id="call-phone" class="button">연락하기</a>
             </div>
-    
+            
+            {% if phone %}
             <div id="modal-container">
                 <div class="modal-background">
                     <div class="modal">
@@ -58,18 +90,22 @@
                                 <td><span id="groom_name">{{ info.groom_name }}</span></td>
                                 <td id="groom_phone"><a class="number" href="tel:{{ phone.groom_phone }}">Call</a></td>
                             </tr>
+                            {% if info.groom_father_name %}
                             <tr>
                                 <td>신랑아버지</td>
                                 <td><span id="groom_father_name">{{ info.groom_father_name }}</span></td>
                                 <td id="groom_father_phone"><a class="number"
                                         href="tel:{{ phone.groom_father_phone }}">Call</a></td>
                             </tr>
+                            {% endif %}
+                            {% if info.groom_mother_name %}
                             <tr>
                                 <td>신랑어머니</td>
                                 <td><span id="groom_mother_name">{{ info.groom_mother_name }}</span></td>
                                 <td id="groom_mother_phone"><a class="number"
                                         href="tel:{{ phone.groom_mother_phone }}">Call</a></td>
                             </tr>
+                            {% endif %}
                         </table>
                         <hr>
                         <table id="bride_contact">
@@ -78,25 +114,29 @@
                                 <td><span id="bride_name">{{ info.bride_name }}</span></td>
                                 <td id="bride_phone"><a class="number" href="tel:{{ phone.bride_phone }}">Call</a></td>
                             </tr>
+                            {% if info.bride_father_name %}
                             <tr>
                                 <td>신부아버지</td>
                                 <td><span id="bride_father_name">{{ info.bride_father_name }}</span></td>
                                 <td id="bride_father_phone"><a class="number"
                                         href="tel:{{ phone.bride_father_phone }}">Call</a></td>
                             </tr>
+                            {% endif %}
+                            {% if info.bride_mother_name %}
                             <tr>
                                 <td>신부어머니</td>
                                 <td><span id="bride_mother_name">{{ info.bride_mother_name }}</span></td>
                                 <td id="bride_mother_phone"><a class="number"
                                         href="tel:{{ phone.bride_mother_phone }}">Call</a></td>
                             </tr>
-    
+                            {% endif %}
                         </table>
                         <button id="close-modal">닫기</button>
                     </div>
                 </div>
             </div>
         </div>
+        {% endif %}
     
         <div class="part" id="calender">
             <h3>Day</h3>
@@ -172,7 +212,8 @@
                 <p id="address_tel">{{ address.address_tel }}</p>
             </div>
         </div>
-    
+        
+        {% if accout %}
         <div class="part" id="bank">
             <h3>마음 전하실 곳</h3>
             <div class="bank-list">
@@ -188,7 +229,7 @@
                             <td><button>복사하기</button></td>
                         </tr>
                         <tr class="clipboard">
-                            <td>[혼주] <span id="groom_father_name">{{ info.groom_father_name }}</span></td>
+                            <td><span id="groom_father_name">{{ info.groom_father_name }}</span></td>
                             <td class="account" id="groom_father_account">{{ account.groom_father_account }}</td>
                             <td><button>복사하기</button></td>
                         </tr>
@@ -209,7 +250,7 @@
                             <td><button>복사하기</button></td>
                         </tr>
                         <tr class="clipboard">
-                            <td>[혼주] <span id="bride_father_name">{{ info.bride_father_name }}</span></td>
+                            <td><span id="bride_father_name">{{ info.bride_father_name }}</span></td>
                             <td class="account" id="bride_father_account">{{ account.bride_father_account }}</td>
                             <td></td>
                             <td><button>복사하기</button></td>
@@ -218,7 +259,9 @@
                 </div>
             </div>
         </div>
-    
+        {% endif %}
+        
+        {% if is_guestbook_use %}
         <div class="part" id="comment">
             <h3>방명록</h3>
             <div class="comment-content">
@@ -305,6 +348,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 
     <script src="{% static 'phone.js' %}"></script>

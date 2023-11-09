@@ -148,6 +148,9 @@ def invitation(request, wedding_id):
         return render(request, 'main/error.html')
     
     photo_list = []
+
+    main_image = None
+    sub_image = None
     for photo in photos:
 
         # if wedding_id not in photo.img.url:
@@ -177,6 +180,7 @@ def invitation(request, wedding_id):
         'sub_image': sub_image,
         'photos': photo_list,
         'date': wedding_date(wedding[0].wedding_date, wedding[0].wedding_time),
+        'is_guestbook_use': wedding[0].use_guestbook,
         'guestbook_list': guestbook_list
     }
 
