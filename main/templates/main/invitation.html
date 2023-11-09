@@ -177,11 +177,12 @@
                 </tbody>
             </table>
             <div id="day-count">
-                <span>{{ info.groom_name }} & {{ info.bride_name }}</span>의 결혼식이&nbsp;<span id="remaining-days"></span>
+                <span>{{ info.groom_name }} & {{ info.bride_name }}</span>&nbsp;의 결혼식이&nbsp;<span id="remaining-days"></span>
                 <p></p>
             </div>
         </div>
     
+        {% if photos %}
         <div class="part" id="gallery">
             <h3>Gallery</h3>
     
@@ -194,6 +195,7 @@
                 <ul class="slide_pagination"></ul>
             </div>
         </div>
+        {% endif %}
     
         <div class="part" id="map">
             <h3>오시는 길</h3>
