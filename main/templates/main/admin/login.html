@@ -18,6 +18,13 @@
             <input type="submit" id="button" value="Login">
         </form>
         <a href="{% url 'register' %}"><button>Register</button></a>
+        {% if messages %}
+            {% for message in messages %}
+            <script>
+                alert("{{ message.message }}")
+            </script>
+            {% endfor %}
+        {% endif %}
     </div>
 </body>
 </html>
