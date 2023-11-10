@@ -104,6 +104,18 @@
                             {% endif %}
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <label>청첩장 활성화 여부</label>
+                        </td>
+                        <td>
+                            {% if info.is_used %}
+                                <input type="checkbox" name="is_used" checked>
+                            {% else %}
+                                <input type="checkbox" name="is_used">
+                            {% endif %}
+                        </td>
+                    </tr>
                 </table>
             </div>
 
