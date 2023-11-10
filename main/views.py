@@ -84,7 +84,7 @@ def register(request):
 
         if not user_wedding:
             messages.warning('회원 가입 실패')
-            return HttpResponseRedirect('/user/admin/register')
+            return render(request, 'main/admin/register.html')
         
         phone = Phone(
             wedding_id=user_wedding,
@@ -142,7 +142,7 @@ def mypage(request, wedding_id):
 
 # Invitation
 def invitation(request, wedding_id):
-    wedding = WeddingMain.objects.filter(wedding_id=wedding_id)
+    wedding = WeddingMain.objects.get(wedding_id=wedding_id)
     phone = Phone.objects.filter(wedding_id=wedding_id)
     account = Account.objects.filter(wedding_id=wedding_id)
     address = Address.objects.filter(wedding_id=wedding_id)
@@ -177,15 +177,15 @@ def invitation(request, wedding_id):
             break
 
     data = {
-        'info': wedding[0],
+        'info': wedding,
         'phone': phone[0],
         'account': account[0],
         'address': address[0],
         'main_image': main_image,
         'sub_image': sub_image,
         'photos': photo_list,
-        'date': wedding_date(wedding[0].wedding_date, wedding[0].wedding_time),
-        'is_guestbook_use': wedding[0].use_guestbook,
+        'date': wedding_date(wedding.wedding_date, wedding.wedding_time),
+        'is_guestbook_use': wedding.use_guestbook,
         'guestbook_list': guestbook_list
     }
 
