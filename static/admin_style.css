@@ -182,16 +182,24 @@ hr {
     background-color: #dedede;
 }
 
-#photos {
-    margin-bottom: 40px;
-}
-
 #mypage-form>div>table>tr>td>input {
     padding-left: 5px;
 }
 
 
 /* Gallery */
+#mainImage,
+#subImage {
+    /* margin: 10% 0; */
+    text-align: center;
+}
+
+#mainImage>img,
+#subImage>img {
+    width: 80%;
+    margin: 10px 0;
+}
+
 #slide {
     /* layout */
     display: flex;
@@ -208,7 +216,9 @@ hr {
 
     /* slide drag를 위해 DOM요소가 드래그로 선택되는것을 방지 */
     user-select: none;
-    margin: 10px 0;
+    /* margin: 10px 0; */
+
+    text-align: center;
 }
 
 .slide_item {
@@ -232,7 +242,7 @@ hr {
 }
 
 .slide_item>img {
-    width: 95%;
+    width: 80%;
 }
 
 .slide_button {
