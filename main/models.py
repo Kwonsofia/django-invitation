@@ -14,6 +14,7 @@ class WeddingMain(models.Model):
     bride_father_name = models.CharField(max_length=10, null=True, blank=True)
     bride_mother_name = models.CharField(max_length=10, null=True, blank=True)
     use_guestbook = models.BooleanField(default=False)
+    is_used = models.BooleanField(default=True)
     wedding_date = models.DateField("wedding date")
     wedding_time = models.CharField(max_length=20)
     reg_dtime = models.DateTimeField(auto_now_add=True)
@@ -53,4 +54,5 @@ class GuestBook(models.Model):
 
 class Photo(models.Model):
     wedding_id = models.ForeignKey(WeddingMain, on_delete=models.CASCADE)
+    photo_id = models.AutoField(primary_key=True)
     img = models.ImageField(upload_to='img')  # image를 넣을때는 {id}_{number}.jpg 형식으로 네이밍 필요

@@ -26,12 +26,12 @@ def admin_user_info(wedding_id):
     sub_image = None
     for photo in photos:
 
-        if wedding_id not in photo.img.url:
-            continue
+        # if wedding_id not in photo.img.url:
+        #     continue
 
-        if 'main_' in photo.img:
+        if 'main_' in photo.img or 'main_' in photo.img.url:
             main_image = photo.img
-        elif 'sub_' in photo.img:
+        elif 'sub_' in photo.img or 'sub_' in photo.img.url:
             sub_image = photo.img
         else:
             photo_list.append(photo.img)
@@ -139,12 +139,41 @@ def mypage(request, wedding_id):
         messages.warning(request, '존재하지 않는 Wedding ID 입니다.')
         return render(request, 'main/admin/login.html')
     
-    if request.method == 'POST':
-        if request.FILES:
-            images = request.FILES.getlist('images')
+    if request.FILES:
+        photos = Photo.objects.filter(wedding_id=wedding_id)
 
-            for image in images:
-                Photo.objects.create(wedding_id=wedding, img=image)
+        main_image = request.FILES.get('main_image')
+        sub_image = request.FILES.get('sub_image')
+
+        old_main_image = None
+        old_sub_image = None
+        for photo in photos:
+
+            # if wedding_id not in photo.img.url:
+            #     continue
+
+            if 'main_' in photo.img or 'main_' in photo.img.url:
+                old_main_image = photo
+            elif 'sub_' in photo.img or 'sub_' in photo.img.url:
+                old_sub_image = photo
+
+        if main_image:
+            if old_main_image:
+                Photo.objects.filter(photo_id=old_main_image.photo_id).delete()
+            main_image.name = f'main_{wedding_id}_' + main_image.name
+            Photo.objects.create(wedding_id=wedding, img=main_image)
+        
+        if sub_image:
+            if old_sub_image:
+                Photo.objects.filter(photo_id=old_sub_image.photo_id).delete()
+            sub_image.name = f'sub_{wedding_id}_' + sub_image.name
+            Photo.objects.create(wedding_id=wedding, img=sub_image)
+
+        images = request.FILES.getlist('images')
+
+        for image in images:
+            image.name = f'{wedding_id}_' + image.name
+            Photo.objects.create(wedding_id=wedding, img=image)
 
         messages.success(request, '수정 완료하였습니다. :)')
 
@@ -164,6 +193,8 @@ def invitation(request, wedding_id):
 
     if not wedding:
         return render(request, 'main/error.html')
+    elif not wedding[0].is_used:
+        return render(request, 'main/error.html')
     
     photo_list = []
 
@@ -171,8 +202,8 @@ def invitation(request, wedding_id):
     sub_image = None
     for photo in photos:
 
-        if wedding_id not in photo.img.url:
-            continue
+        # if wedding_id not in photo.img.url:
+        #     continue
 
         if 'main_' in photo.img.url:
             main_image = photo.img
