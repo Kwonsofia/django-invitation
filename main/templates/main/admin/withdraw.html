@@ -20,5 +20,12 @@
         <button type="submit">Yes, delete my account</button>
     </form>
     <a href="{% url 'mypage' wedding_id %}"><button>No, cancel</button></a>
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert("{{ message.message }}")
+            </script>
+        {% endfor %}
+    {% endif %}
 </body>
 </html>
