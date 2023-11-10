@@ -111,41 +111,121 @@ def mypage(request, wedding_id):
         messages.warning(request, '존재하지 않는 Wedding ID 입니다.')
         return render(request, 'main/admin/login.html')
     
-    if request.FILES:
-        photos = Photo.objects.filter(wedding_id=wedding_id)
+    if request.method == 'POST':
 
-        main_image = request.FILES.get('main_image')
-        sub_image = request.FILES.get('sub_image')
+        wedding_info_change = {}
+        if request.POST.get('change_passwd'):
+            if request.POST.get('passwd') == wedding.passwd:
+                wedding_info_change['passwd'] = request.POST.get('change_passwd')
+            else:
+                messages.warning(request, '비밀번호가 틀렸습니다.')
 
-        old_main_image = None
-        old_sub_image = None
-        for photo in photos:
+        if request.POST.get('groom_father_name'):
+            wedding_info_change['groom_father_name'] = request.POST.get('groom_father_name')
+        if request.POST.get('groom_mother_name'):
+            wedding_info_change['groom_mother_name'] = request.POST.get('groom_mother_name')
+        if request.POST.get('bride_father_name'):
+            wedding_info_change['bride_father_name'] = request.POST.get('bride_father_name')
+        if request.POST.get('bride_mother_name'):
+            wedding_info_change['bride_mother_name'] = request.POST.get('bride_mother_name')
+        if request.POST.get('wedding_date'):
+            wedding_info_change['wedding_date'] = request.POST.get('wedding_date')
+        if request.POST.get('wedding_time'):
+            wedding_info_change['wedding_time'] = request.POST.get('wedding_time')
+        if request.POST.get('use_guestbook'):
+            wedding_info_change['use_guestbook'] = request.POST.get('use_guestbook')
+        if request.POST.get('is_used'):
+            wedding_info_change['is_used'] = request.POST.get('is_used')
 
-            # if wedding_id not in photo.img.url:
-            #     continue
+        phone_change = {}
+        if request.POST.get('groom_phone'):
+            phone_change['groom_phone'] = request.POST.get('groom_phone')
+        if request.POST.get('bride_phone'):
+            phone_change['bride_phone'] = request.POST.get('bride_phone')
+        if request.POST.get('groom_father_phone'):
+            phone_change['groom_father_phone'] = request.POST.get('groom_father_phone')
+        if request.POST.get('groom_mother_phone'):
+            phone_change['groom_mother_phone'] = request.POST.get('groom_mother_phone')
+        if request.POST.get('bride_father_phone'):
+            phone_change['bride_father_phone'] = request.POST.get('bride_father_phone')
+        if request.POST.get('bride_mother_phone'):
+            phone_change['bride_mother_phone'] = request.POST.get('bride_mother_phone')
+            
+        account_change = {}
+        if request.POST.get('groom_account'):
+            account_change['groom_account'] = request.POST.get('groom_account')
+        if request.POST.get('groom_father_account'):
+            account_change['groom_father_account'] = request.POST.get('groom_father_account')
+        if request.POST.get('groom_mother_account'):
+            account_change['groom_mother_account'] = request.POST.get('groom_mother_account')
+        if request.POST.get('bride_account'):
+            account_change['bride_account'] = request.POST.get('bride_account')
+        if request.POST.get('bride_father_account'):
+            account_change['bride_father_account'] = request.POST.get('bride_father_account')
+        if request.POST.get('bride_mother_account'):
+            account_change['bride_mother_account'] = request.POST.get('bride_mother_account')
 
-            if 'main_' in photo.img or 'main_' in photo.img.url:
-                old_main_image = photo
-            elif 'sub_' in photo.img or 'sub_' in photo.img.url:
-                old_sub_image = photo
+        address_change = {}
+        if request.POST.get('address'):
+            address_change['address'] = request.POST.get('address')
+        if request.POST.get('address_tel'):
+            address_change['address_tel'] = request.POST.get('address_tel')
+        if request.POST.get('kakaomap_timestamp'):
+            address_change['kakaomap_timestamp'] = request.POST.get('kakaomap_timestamp')
+        if request.POST.get('kakaomap_key'):
+            address_change['kakaomap_key'] = request.POST.get('kakaomap_key')
 
-        if main_image:
-            if old_main_image:
-                Photo.objects.filter(photo_id=old_main_image.photo_id).delete()
-            main_image.name = f'main_{wedding_id}_' + main_image.name
-            Photo.objects.create(wedding_id=wedding, img=main_image)
-        
-        if sub_image:
-            if old_sub_image:
-                Photo.objects.filter(photo_id=old_sub_image.photo_id).delete()
-            sub_image.name = f'sub_{wedding_id}_' + sub_image.name
-            Photo.objects.create(wedding_id=wedding, img=sub_image)
+        if wedding_info_change:
+            wedding_table = WeddingMain(**wedding_info_change)
+            wedding_table.save()
 
-        images = request.FILES.getlist('images')
+        if phone_change:
+            phone_table = Phone(**phone_change)
+            phone_table.save()
 
-        for image in images:
-            image.name = f'{wedding_id}_' + image.name
-            Photo.objects.create(wedding_id=wedding, img=image)
+        if account_change:
+            account_table = Account(**account_change)
+            account_table.save()
+
+        if address_change:
+            address_table = Address(**address_change)
+            address_table.save()
+
+        if request.FILES:
+            photos = Photo.objects.filter(wedding_id=wedding_id)
+
+            main_image = request.FILES.get('main_image')
+            sub_image = request.FILES.get('sub_image')
+
+            old_main_image = None
+            old_sub_image = None
+            for photo in photos:
+
+                # if wedding_id not in photo.img.url:
+                #     continue
+
+                if 'main_' in photo.img or 'main_' in photo.img.url:
+                    old_main_image = photo
+                elif 'sub_' in photo.img or 'sub_' in photo.img.url:
+                    old_sub_image = photo
+
+            if main_image:
+                if old_main_image:
+                    Photo.objects.filter(photo_id=old_main_image.photo_id).delete()
+                main_image.name = f'main_{wedding_id}_' + main_image.name
+                Photo.objects.create(wedding_id=wedding, img=main_image)
+            
+            if sub_image:
+                if old_sub_image:
+                    Photo.objects.filter(photo_id=old_sub_image.photo_id).delete()
+                sub_image.name = f'sub_{wedding_id}_' + sub_image.name
+                Photo.objects.create(wedding_id=wedding, img=sub_image)
+
+            images = request.FILES.getlist('images')
+
+            for image in images:
+                image.name = f'{wedding_id}_' + image.name
+                Photo.objects.create(wedding_id=wedding, img=image)
 
         messages.success(request, '수정 완료하였습니다. :)')
 
