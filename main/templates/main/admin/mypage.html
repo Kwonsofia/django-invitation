@@ -49,7 +49,7 @@
                             <label>신랑 이름</label>
                         </td>
                         <td>
-                            <input type="text" name="groom_name" placeholder="{{ info.groom_name }}" required>
+                            <input type="text" name="groom_name" placeholder="{{ info.groom_name }}">
                         </td>
                     </tr>
                     <tr>
@@ -57,7 +57,7 @@
                             <label>신랑 전화번호</label>
                         </td>
                         <td>
-                            <input type="text" name="groom_phone" placeholder="{{ phone.groom_phone }}" required>
+                            <input type="text" name="groom_phone" placeholder="{{ phone.groom_phone }}">
                         </td>
                     </tr>
                     <tr>
@@ -65,7 +65,7 @@
                             <label>신부 이름</label>
                         </td>
                         <td>
-                            <input type="text" name="bride_name" placeholder="{{ info.bride_name }}" required>
+                            <input type="text" name="bride_name" placeholder="{{ info.bride_name }}">
                         </td>
                     </tr>
                     <tr>
@@ -73,7 +73,7 @@
                             <label>신부 전화번호</label>
                         </td>
                         <td>
-                            <input type="text" name="bride_phone" placeholder="{{ phone.bride_phone }}" required>
+                            <input type="text" name="bride_phone" placeholder="{{ phone.bride_phone }}">
                         </td>
                     </tr>
                     <tr>
@@ -81,7 +81,7 @@
                             <label>Date</label>
                         </td>
                         <td>
-                            <input type="text" name="wedding_date" placeholder="{{ info.wedding_date|date:'Y-m-d' }}" required>
+                            <input type="text" name="wedding_date" placeholder="{{ info.wedding_date|date:'Y-m-d' }}">
                         </td>
                     </tr>
                     <tr>
@@ -89,7 +89,7 @@
                             <label>Time</label>
                         </td>
                         <td>
-                            <input type="text" name="wedding_time" placeholder="{{ date.time }}" required>
+                            <input type="text" name="wedding_time" placeholder="{{ date.time }}">
                         </td>
                     </tr>
                     <tr>
@@ -117,7 +117,7 @@
                             <label>식장 주소</label>
                         </td>
                         <td>
-                            <input type="text" name="address" placeholder="{{ address.address }}" required>
+                            <input type="text" name="address" placeholder="{{ address.address }}">
                         </td>
                     </tr>
                     <tr>
@@ -133,7 +133,7 @@
                             <label>카카오맵 Timestamp</label>
                         </td>
                         <td>
-                            <input type="text" name="kakaomap_timestamp" placeholder="{{ address.kakaomap_timestamp }}" required>
+                            <input type="text" name="kakaomap_timestamp" placeholder="{{ address.kakaomap_timestamp }}">
                         </td>
                     </tr>
                     <tr>
@@ -141,7 +141,7 @@
                             <label>카카오맵 Key</label>
                         </td>
                         <td>
-                            <input type="text" name="kakaomap_key" placeholder="{{ address.kakaomap_key }}" required>
+                            <input type="text" name="kakaomap_key" placeholder="{{ address.kakaomap_key }}">
                         </td>
                     </tr>
                 </table>
@@ -319,6 +319,35 @@
                 (ex) ID가 test인 경우 test_1.png / test_2.jpg)
                 <br>
             </p>
+
+            <br>
+            <h4>Main</h4>
+            <div class="section">
+                <input type="file" name="main_image" class="img-input">
+                {% if main_image %}
+                <div class="part" id="mainImage">
+                    <img src="{{ main_image.url }}">
+                </div>
+                {% endif %}
+            </div>
+
+            <br>
+            <h4>Sub</h4>
+            <div class="section">
+                <input type="file" name="sub_image" class="img-input">
+                {% if sub_image %}
+                <div class="part" id="subImage">
+                    <img src="{{ sub_image.url }}">
+                </div>
+                {% endif %}
+            </div>
+
+            <br>
+            <h4>Gallery</h4>
+            <div class="section" id="photos">
+                <input type="file" name="images" class="img-input" multiple>
+            </div>
+            
             <div class="section" id="photos">
                 <div id="slide">
                     {% for photo in photos %}
@@ -328,7 +357,6 @@
                     <div class="slide_next_button slide_button"></div>
                     <ul class="slide_pagination"></ul>
                 </div>
-                <input type="file" name="images" id="img-input" multiple>
             </div>
             <script src="{% static 'slide.js' %}"></script>
             <input name="write-button" type="submit" role="button" id="mypage-button" value="수정하기" />
