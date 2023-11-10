@@ -107,7 +107,11 @@
                             </tr>
                             {% endif %}
                         </table>
+                        {% if not info.groom_father_name and not info.groom_mother_name and not info.bride_father_name and not info.bride_mother_name %}
+                        <br>
+                        {% else %}
                         <hr>
+                        {% endif %}
                         <table id="bride_contact">
                             <tr>
                                 <td>신부</td>
@@ -336,7 +340,15 @@
                     {% endfor %}
                 {% endif %}
                 <div id="comment-button">
+                    {% if guestbook_list %}
+                    <style>
+                        #comment-button {
+                            float: right;
+                            margin: 0;
+                        }
+                    </style>
                     <button id="show-guestbook"><a href="{% url 'guestbooks' info.wedding_id %}">전체보기</a></button>
+                    {% endif %}
                     <button id="write-guestbook">작성하기</button>
                 </div>
             </div>
