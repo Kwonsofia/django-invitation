@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook
@@ -181,6 +181,25 @@ def mypage(request, wedding_id):
 
     return render(request, 'main/admin/mypage.html', result)
 
+
+def withdraw(request, wedding_id):
+
+    user_data_delete = get_object_or_404(WeddingMain, wedding_id=wedding_id)
+
+    if request.method == 'POST':
+        wedding = WeddingMain.objects.get(wedding_id=wedding_id)
+
+        passwd = request.POST.get('passwd')
+
+        if passwd and passwd == wedding.passwd:
+            user_data_delete.delete()
+            messages.success(request, '탈퇴되었습니다.')
+            return redirect('login')
+        else:
+            messages.warning(request, '비밀번호가 틀렸습니다.')
+        
+    return render(request, 'main/admin/withdraw.html', {'wedding_id': wedding_id})
+    
 
 # Invitation
 def invitation(request, wedding_id):

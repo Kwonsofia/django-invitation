@@ -373,6 +373,7 @@
             <script src="{% static 'slide.js' %}"></script>
             <input name="write-button" type="submit" role="button" id="mypage-button" value="수정하기" />
         </form>
+        <a href="{% url 'withdraw' info.wedding_id %}"><button>탈퇴하기</button></a>
 
         {% if messages %}
             {% for message in messages %}

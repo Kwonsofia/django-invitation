@@ -1,0 +1,24 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'admin_style.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Confirm Delete Account</h2>
+    <br>
+    <br>
+    <div style="text-align: center;">Confirm that you want to delete your account:</div>
+    <br>
+    <br>
+    <form method="post" action="{% url 'withdraw' wedding_id %}">
+        {% csrf_token %}
+        <button type="submit">Yes, delete my account</button>
+    </form>
+    <a href="{% url 'mypage' wedding_id %}"><button>No, cancel</button></a>
+</body>
+</html>
