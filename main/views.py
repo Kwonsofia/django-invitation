@@ -22,16 +22,27 @@ def admin_user_info(wedding_id):
         return None
     
     photo_list = []
+    main_image = None
+    sub_image = None
     for photo in photos:
-        # if wedding_id not in photo.img.url:
-        #     continue
-        photo_list.append(photo.img)
+
+        if wedding_id not in photo.img.url:
+            continue
+
+        if 'main_' in photo.img:
+            main_image = photo.img
+        elif 'sub_' in photo.img:
+            sub_image = photo.img
+        else:
+            photo_list.append(photo.img)
 
     data = {
         'info': wedding,
-        'phone': phone[0],
-        'account': account[0],
-        'address': address[0],
+        'phone': phone[0] if phone else None,
+        'account': account[0] if account else None,
+        'address': address[0] if address else None,
+        'main_image': main_image,
+        'sub_image': sub_image,
         'photos': photo_list,
         'date': wedding_date(wedding.wedding_date, wedding.wedding_time),
     }
@@ -73,11 +84,6 @@ def register(request):
             passwd=request.POST['passwd'],
             groom_name=request.POST['groom_name'],
             bride_name=request.POST['bride_name'],
-            
-            groom_father_name=request.POST.get('groom_father_name'),
-            groom_mother_name=request.POST.get('groom_mother_name'),
-            bride_father_name=request.POST.get('bride_father_name'),
-            bride_mother_name=request.POST.get('bride_mother_name'),
 
             use_guestbook=request.POST.get('use_guestbook', False),
             wedding_date=request.POST['wedding_date'],
@@ -91,27 +97,6 @@ def register(request):
         if not user_wedding:
             messages.warning(request, '회원 가입 실패')
             return render(request, 'main/admin/register.html')
-        
-        phone = Phone(
-            wedding_id=user_wedding,
-            groom_phone=request.POST.get('groom_phone'),
-            groom_father_phone=request.POST.get('groom_father_phone'),
-            groom_mother_phone=request.POST.get('groom_mother_phone'),
-
-            bride_phone=request.POST.get('bride_phone'),
-            bride_father_phone=request.POST.get('bride_father_phone'),
-            bride_mother_phone=request.POST.get('bride_mother_phone'),
-        )
-        phone.save()
-
-        account = Account(
-            wedding_id=user_wedding,
-            groom_account=request.POST.get('groom_account'),
-            groom_father_account=request.POST.get('groom_father_account'),
-            bride_account=request.POST.get('bride_account'),
-            bride_father_account=request.POST.get('bride_father_account'),
-        )
-        account.save()
 
         address = Address(
             wedding_id=user_wedding,
@@ -124,9 +109,21 @@ def register(request):
         address.save()
 
         if request.FILES:
+            main_image = request.FILES.get('main_image')
+            sub_image = request.FILES.get('sub_image')
+
+            if main_image:
+                main_image.name = f'main_{wedding_id}_' + main_image.name
+                Photo.objects.create(wedding_id=user_wedding, img=main_image)
+            
+            if sub_image:
+                sub_image.name = f'sub_{wedding_id}_' + sub_image.name
+                Photo.objects.create(wedding_id=user_wedding, img=sub_image)
+
             images = request.FILES.getlist('images')
 
             for image in images:
+                image.name = f'{wedding_id}_' + image.name
                 Photo.objects.create(wedding_id=user_wedding, img=image)
 
         messages.success(request, '회원 성공, 로그인해주세요 :)')
@@ -174,8 +171,8 @@ def invitation(request, wedding_id):
     sub_image = None
     for photo in photos:
 
-        # if wedding_id not in photo.img.url:
-        #     continue
+        if wedding_id not in photo.img.url:
+            continue
 
         if 'main_' in photo.img.url:
             main_image = photo.img
@@ -194,9 +191,9 @@ def invitation(request, wedding_id):
 
     data = {
         'info': wedding[0],
-        'phone': phone[0],
-        'account': account[0],
-        'address': address[0],
+        'phone': phone[0] if phone else None,
+        'account': account[0] if account else None,
+        'address': address[0] if address else None,
         'main_image': main_image,
         'sub_image': sub_image,
         'photos': photo_list,
@@ -228,7 +225,6 @@ def guestbook(request, wedding_id):
         guestbook.passwd = request.POST['passwd']
 
         guestbook.save()
-
 
     return HttpResponseRedirect(f'/{wedding_id}#comment')
 

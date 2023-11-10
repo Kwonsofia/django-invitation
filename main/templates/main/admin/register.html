@@ -156,144 +156,6 @@
                     <img src="C:\Users\hmkwon\Desktop\hm\Test\Django\invitation\django-invitation\media\img\user_admin_kakao2.PNG">
                 </div>
             </div>
-
-            <h3>Parent</h3>
-            <hr>
-            <div class="section" id="phone_groom">
-                <h4>신랑</h4>
-                <table>
-                    <tr>
-                        <td>
-                            <label>아버지 성함</label>
-                        </td>
-                        <td>
-                            <input type="text" name="groom_father_name">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>어머니 성함</label>
-                        </td>
-                        <td>
-                            <input type="text" name="groom_mother_name">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>아버지 전화번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="groom_father_phone">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>어머니 전화번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="groom_mother_phone">
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="section" id="phone_bride">
-                <h4>신부</h4>
-                <table>
-                    <tr>
-                        <td>
-                            <label>아버지 성함</label>
-                        </td>
-                        <td>
-                            <input type="text" name="bride_father_name">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>어머니 성함</label>
-                        </td>
-                        <td>
-                            <input type="text" name="bride_mother_name">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>아버지 전화번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="bride_father_phone">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>어머니 전화번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="bride_mother_phone">
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-            <h3>Account</h3>
-            <hr>
-            <div class="section" id="account_groom">
-                <h4>신랑</h4>
-                <table>
-                    <tr>
-                        <td>
-                            <label>계좌번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="groom_account">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>아버지 계좌번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="groom_father_account">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>어머니 계좌번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="groom_mother_account">
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="section" id="account_bride">
-                <h4>신부</h4>
-                <table>
-                    <tr>
-                        <td>
-                            <label>계좌번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="bride_account">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>아버지 계좌번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="bride_father_account">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>어머니 계좌번호</label>
-                        </td>
-                        <td>
-                            <input type="text" name="bride_mother_account">
-                        </td>
-                    </tr>
-                </table>
-            </div>
             
             <h3>Photos</h3>
             <hr>
@@ -306,8 +168,17 @@
                 (ex) ID가 test인 경우 test_1.png / test_2.jpg)
                 <br>
             </p>
+            <h4>Main</h4>
+            <div class="section">
+                <input type="file" name="main_image" class="img-input">
+            </div>
+            <h4>Sub</h4>
+            <div class="section">
+                <input type="file" name="sub_image" class="img-input">
+            </div>
+            <h4>Gallery</h4>
             <div class="section" id="photos">
-                <input type="file" name="images" id="img-input" multiple>
+                <input type="file" name="images" class="img-input" multiple>
             </div>
             <input name="write-button" type="submit" role="button" id="register-button" value="Register" />
         </form>
