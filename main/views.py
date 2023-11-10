@@ -98,34 +98,6 @@ def register(request):
             messages.warning(request, '회원 가입 실패')
             return render(request, 'main/admin/register.html')
 
-        address = Address(
-            wedding_id=user_wedding,
-            address=request.POST['address'],
-            address_tel=request.POST.get('address_tel'),
-
-            kakaomap_timestamp=request.POST['kakaomap_timestamp'],
-            kakaomap_key=request.POST['kakaomap_key'],
-        )
-        address.save()
-
-        if request.FILES:
-            main_image = request.FILES.get('main_image')
-            sub_image = request.FILES.get('sub_image')
-
-            if main_image:
-                main_image.name = f'main_{wedding_id}_' + main_image.name
-                Photo.objects.create(wedding_id=user_wedding, img=main_image)
-            
-            if sub_image:
-                sub_image.name = f'sub_{wedding_id}_' + sub_image.name
-                Photo.objects.create(wedding_id=user_wedding, img=sub_image)
-
-            images = request.FILES.getlist('images')
-
-            for image in images:
-                image.name = f'{wedding_id}_' + image.name
-                Photo.objects.create(wedding_id=user_wedding, img=image)
-
         messages.success(request, '회원 성공, 로그인해주세요 :)')
         return HttpResponseRedirect('/user/admin/login')
     else:
