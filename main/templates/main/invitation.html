@@ -361,7 +361,7 @@
                             <p>GUESTBOOK</p>
                             <p>방명록</p>
                         </div>
-                        <form action="{% url 'guestbook' %}" , method="post">
+                        <form action="{% url 'guestbook' info.wedding_id %}" method="post">
                             {% csrf_token %}
                             <div id="guestbook-reg">
                                 <div>
@@ -378,7 +378,6 @@
                                     <textarea type="text" name="message" id="inputMessage" placeholder="내용을 입력해주세요." required></textarea>
                                 </div>
                             </div>
-                            <input style="display: none;" type="text" name="wedding_id" value="{{ info.wedding_id }}"/>
                             <input id="write-button" type="submit" role="button" value="작성하기" />
                         </form>
                     </div>
