@@ -31,8 +31,10 @@ class Account(models.Model):
     wedding_id = models.ForeignKey(WeddingMain, on_delete=models.CASCADE)
     groom_account = models.CharField(max_length=30)
     groom_father_account = models.CharField(max_length=30, null=True, blank=True)
+    groom_mother_account = models.CharField(max_length=30, null=True, blank=True)
     bride_account = models.CharField(max_length=30)
     bride_father_account = models.CharField(max_length=30, null=True, blank=True)
+    bride_mother_account = models.CharField(max_length=30, null=True, blank=True)
 
 class Address(models.Model):
     wedding_id = models.ForeignKey(WeddingMain, on_delete=models.CASCADE)

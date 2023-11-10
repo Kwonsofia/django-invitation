@@ -12,7 +12,7 @@ def index(request):
 
 
 def admin_user_info(wedding_id):
-    wedding = WeddingMain.objects.filter(wedding_id=wedding_id)
+    wedding = WeddingMain.objects.get(wedding_id=wedding_id)
     phone = Phone.objects.filter(wedding_id=wedding_id)
     account = Account.objects.filter(wedding_id=wedding_id)
     address = Address.objects.filter(wedding_id=wedding_id)
@@ -20,14 +20,20 @@ def admin_user_info(wedding_id):
 
     if not wedding:
         return None
+    
+    photo_list = []
+    for photo in photos:
+        # if wedding_id not in photo.img.url:
+        #     continue
+        photo_list.append(photo.img)
 
     data = {
-        'info': wedding[0],
+        'info': wedding,
         'phone': phone[0],
         'account': account[0],
         'address': address[0],
-        'photos': photos,
-        'date': wedding_date(wedding[0].wedding_date, wedding[0].wedding_time),
+        'photos': photo_list,
+        'date': wedding_date(wedding.wedding_date, wedding.wedding_time),
     }
 
     return data
@@ -49,7 +55,7 @@ def login(request):
             messages.warning(request, '비밀번호가 틀렸습니다.')
             return render(request, 'main/admin/login.html')
 
-        return mypage(request, wedding_id)
+        return HttpResponseRedirect(f'/user/admin/mypage/{wedding_id}')
 
     else:
         return render(request, 'main/admin/login.html')
@@ -58,8 +64,8 @@ def register(request):
     if request.method == 'POST':
         wedding_id = request.POST.get('wedding_id')
 
-        if WeddingMain.objects.get(wedding_id=wedding_id):
-            messages.warning('이미 존재하는 유저입니다. 로그인 부탁드립니다.')
+        if WeddingMain.objects.filter(wedding_id=wedding_id):
+            messages.warning(request, '이미 존재하는 유저입니다. 로그인 부탁드립니다.')
             return HttpResponseRedirect('/user/admin/login')
 
         wedding_main = WeddingMain(
@@ -83,7 +89,7 @@ def register(request):
         user_wedding = WeddingMain.objects.get(wedding_id=wedding_id)
 
         if not user_wedding:
-            messages.warning('회원 가입 실패')
+            messages.warning(request, '회원 가입 실패')
             return render(request, 'main/admin/register.html')
         
         phone = Phone(
@@ -117,25 +123,35 @@ def register(request):
         )
         address.save()
 
-        if request.FILES.get('img'):
-            for p in request.FILES.get('img'):
-                photos = Photo(
-                    wedding_id=user_wedding,
-                    img=p,
-                )
-                photos.save()
+        if request.FILES:
+            images = request.FILES.getlist('images')
 
-        messages.success('회원 성공, 로그인해주세요 :)')
+            for image in images:
+                Photo.objects.create(wedding_id=user_wedding, img=image)
+
+        messages.success(request, '회원 성공, 로그인해주세요 :)')
         return HttpResponseRedirect('/user/admin/login')
     else:
         return render(request, 'main/admin/register.html')
 
 
 def mypage(request, wedding_id):
-    result = admin_user_info(wedding_id)
+    wedding = WeddingMain.objects.get(wedding_id=wedding_id)
 
-    if not result:
+    if not wedding:
+        messages.warning(request, '존재하지 않는 Wedding ID 입니다.')
         return render(request, 'main/admin/login.html')
+    
+    if request.method == 'POST':
+        if request.FILES:
+            images = request.FILES.getlist('images')
+
+            for image in images:
+                Photo.objects.create(wedding_id=wedding, img=image)
+
+        messages.success(request, '수정 완료하였습니다. :)')
+
+    result = admin_user_info(wedding_id)
 
     return render(request, 'main/admin/mypage.html', result)
 

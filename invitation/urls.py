@@ -25,7 +25,7 @@ urlpatterns = [
     path('', views.index),
     path('user/admin/login', views.login, name='login'),
     path('user/admin/register', views.register, name='register'),
-    path('user/admin/mypage/<str:wedding_id>', views.mypage),
+    path('user/admin/mypage/<str:wedding_id>', views.mypage, name='mypage'),
     path('<str:wedding_id>', views.invitation),
     path('<str:wedding_id>/guestbook', views.guestbook_list, name='guestbooks'),
     path('guestbook', views.guestbook, name='guestbook'),

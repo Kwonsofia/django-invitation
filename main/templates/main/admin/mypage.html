@@ -1,0 +1,348 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'admin_style.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="mypage-wrapper">
+        <h2>My Page</h2>
+        <form id="mypage-form" action="{% url 'mypage'  info.wedding_id  %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3>Wedding</h3>
+            <hr>
+            <p class="info-sentence">ID가 test인 경우 모바일 청첩장 주소는 https://www.wedding.com/test 입니다.</p>
+            <div class="section" id="wedding">
+                <table>
+                    <tr>
+                        <td>
+                            <label>ID</label>
+                        </td>
+                        <td>
+                            <input type="text" name="wedding_id" placeholder="{{ info.wedding_id }}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Passwd</label>
+                        </td>
+                        <td>
+                            <input type="password" name="passwd">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Change Passwd</label>
+                        </td>
+                        <td>
+                            <input type="password" name="passwd">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>신랑 이름</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_name" placeholder="{{ info.groom_name }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>신랑 전화번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_phone" placeholder="{{ phone.groom_phone }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>신부 이름</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_name" placeholder="{{ info.bride_name }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>신부 전화번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_phone" placeholder="{{ phone.bride_phone }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Date</label>
+                        </td>
+                        <td>
+                            <input type="text" name="wedding_date" placeholder="{{ info.wedding_date|date:'Y-m-d' }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Time</label>
+                        </td>
+                        <td>
+                            <input type="text" name="wedding_time" placeholder="{{ date.time }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>방명록 사용 여부</label>
+                        </td>
+                        <td>
+                            {% if info.use_guestbook %}
+                                <input type="checkbox" name="user_guestbook" checked>
+                            {% else %}
+                                <input type="checkbox" name="user_guestbook">
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Address</h3>
+            <hr>
+            <p class="info-sentence">식장 전화번호를 제외하고 모두 입력해주셔야 합니다.</p>
+            <div class="section" id="address">
+                <table>
+                    <tr>
+                        <td>
+                            <label>식장 주소</label>
+                        </td>
+                        <td>
+                            <input type="text" name="address" placeholder="{{ address.address }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>식장 전화번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="address_tel" placeholder="{{ address.address_tel }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>카카오맵 Timestamp</label>
+                        </td>
+                        <td>
+                            <input type="text" name="kakaomap_timestamp" placeholder="{{ address.kakaomap_timestamp }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>카카오맵 Key</label>
+                        </td>
+                        <td>
+                            <input type="text" name="kakaomap_key" placeholder="{{ address.kakaomap_key }}" required>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div id="kakao-map-description">
+                    <span>카카오맵 Timestamp, Key 확인하는 방법 (PC)</span>
+                    <br>
+                    <br>
+                    1. 카카오맵에서 식장 검색
+                    <br>
+                    2. 검색 후 나오는 핀 클릭 후 공유하기 버튼 클릭
+                    <br>
+                    3. HTML 태그 복사 클릭
+                    <br>
+                    <img
+                        src="C:\Users\hmkwon\Desktop\hm\Test\Django\invitation\django-invitation\media\img\user_admin_kakao1.PNG">
+                    <br>
+                    4. 소스 생성하기 클릭
+                    <br>
+                    5. 일반지도(기본) 소스내용 중 timestamp, key 값 입력
+                    <br>
+                    (ex) 1698732688320, 2gnmw)
+                    <br>
+                    <img
+                        src="C:\Users\hmkwon\Desktop\hm\Test\Django\invitation\django-invitation\media\img\user_admin_kakao2.PNG">
+                </div>
+            </div>
+
+            <h3>Parent</h3>
+            <hr>
+            <div class="section" id="phone_groom">
+                <h4>신랑</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <label>아버지 성함</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_father_name" placeholder="{{ info.groom_father_name }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>어머니 성함</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_mother_name" placeholder="{{ info.groom_mother_name }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>아버지 전화번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_father_phone" placeholder="{{ phone.groom_father_phone }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>어머니 전화번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_mother_phone" placeholder="{{ phone.groom_mother_phone }}">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="section" id="phone_bride">
+                <h4>신부</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <label>아버지 성함</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_father_name" placeholder="{{ info.bride_father_name }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>어머니 성함</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_mother_name" placeholder="{{ info.bride_mother_name }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>아버지 전화번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_father_phone" placeholder="{{ phone.bride_father_phone }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>어머니 전화번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_mother_phone" placeholder="{{ phone.bride_mother_phone }}">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Account</h3>
+            <hr>
+            <div class="section" id="account_groom">
+                <h4>신랑</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <label>계좌번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_account" placeholder="{{ account.groom_account }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>아버지 계좌번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_father_account" placeholder="{{ account.groom_father_account }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>어머니 계좌번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="groom_mother_account" placeholder="{{ account.groom_mother_account }}">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="section" id="account_bride">
+                <h4>신부</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <label>계좌번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_account" placeholder="{{ account.bride_account }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>아버지 계좌번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_father_account" placeholder="{{ account.bride_father_account }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>어머니 계좌번호</label>
+                        </td>
+                        <td>
+                            <input type="text" name="bride_mother_account" placeholder="{{ account.bride_mother_account }}">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Photos</h3>
+            <hr>
+            <p class="info-sentence">
+                <span>사진 업로드시 주의할 점</span>
+                <br>
+                <br>
+                위에 작성하신 ID를 포함한 파일명으로 수정 후 업로드 부탁드립니다.
+                <br>
+                (ex) ID가 test인 경우 test_1.png / test_2.jpg)
+                <br>
+            </p>
+            <div class="section" id="photos">
+                <div id="slide">
+                    {% for photo in photos %}
+                    <div class="slide_item"><img src="{{ photo.url }}" alt=""></div>
+                    {% endfor %}
+                    <div class="slide_prev_button slide_button"></div>
+                    <div class="slide_next_button slide_button"></div>
+                    <ul class="slide_pagination"></ul>
+                </div>
+                <input type="file" name="images" id="img-input" multiple>
+            </div>
+            <script src="{% static 'slide.js' %}"></script>
+            <input name="write-button" type="submit" role="button" id="mypage-button" value="수정하기" />
+        </form>
+
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    alert("{{ message.message }}")
+                </script>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+</body>
+
+</html>
