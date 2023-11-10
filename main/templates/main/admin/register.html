@@ -13,7 +13,7 @@
 <body>
     <div class="register-wrapper">
         <h2>Register</h2>
-        <form id="register-form" action="{% url 'register' %}", method="post">
+        <form id="register-form" action="{% url 'register' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <h3>Wedding</h3>
             <hr>
@@ -150,6 +150,8 @@
                     4. 소스 생성하기 클릭
                     <br>
                     5. 일반지도(기본) 소스내용 중 timestamp, key 값 입력
+                    <br>
+                    (ex) 1698732688320, 2gnmw)
                     <br>
                     <img src="C:\Users\hmkwon\Desktop\hm\Test\Django\invitation\django-invitation\media\img\user_admin_kakao2.PNG">
                 </div>
@@ -305,7 +307,7 @@
                 <br>
             </p>
             <div class="section" id="photos">
-                <input type="file" name="files[]" name="img" id="img-input" multiple>
+                <input type="file" name="images" id="img-input" multiple>
             </div>
             <input name="write-button" type="submit" role="button" id="register-button" value="Register" />
         </form>
