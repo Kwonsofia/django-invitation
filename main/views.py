@@ -113,6 +113,7 @@ def mypage(request, wedding_id):
     
     if request.method == 'POST':
 
+        print('[*] ', request.POST)
         wedding_info_change = {}
         if request.POST.get('change_passwd'):
             if request.POST.get('passwd') == wedding.passwd:
@@ -132,10 +133,14 @@ def mypage(request, wedding_id):
             wedding_info_change['wedding_date'] = request.POST.get('wedding_date')
         if request.POST.get('wedding_time'):
             wedding_info_change['wedding_time'] = request.POST.get('wedding_time')
-        if request.POST.get('use_guestbook'):
-            wedding_info_change['use_guestbook'] = request.POST.get('use_guestbook')
-        if request.POST.get('is_used'):
-            wedding_info_change['is_used'] = request.POST.get('is_used')
+        if 'use_guestbook' in request.POST and request.POST.get('use_guestbook'):
+            wedding_info_change['use_guestbook'] = True
+        else:
+            wedding_info_change['use_guestbook'] = False
+        if 'is_used' in request.POST and request.POST.get('is_used'):
+            wedding_info_change['is_used'] = True
+        else:
+            wedding_info_change['is_used'] = False
 
         phone_change = {}
         if request.POST.get('groom_phone'):
@@ -176,20 +181,28 @@ def mypage(request, wedding_id):
             address_change['kakaomap_key'] = request.POST.get('kakaomap_key')
 
         if wedding_info_change:
-            wedding_table = WeddingMain(**wedding_info_change)
-            wedding_table.save()
+            wedding_table = WeddingMain.objects.filter(wedding_id=wedding_id).update(**wedding_info_change)
 
         if phone_change:
-            phone_table = Phone(**phone_change)
-            phone_table.save()
+            phone_table = Phone.objects.filter(wedding_id=wedding_id)
+            if phone_table:
+                phone_table.update(**phone_change)
+            else:
+                Phone.objects.create(wedding_id=wedding, **phone_change)
 
         if account_change:
-            account_table = Account(**account_change)
-            account_table.save()
+            account_table = Account.objects.filter(wedding_id=wedding_id)
+            if account_table:
+                account_table.update(**account_change)
+            else:
+                Account.objects.create(wedding_id=wedding, **account_change)
 
         if address_change:
-            address_table = Address(**address_change)
-            address_table.save()
+            address_table = Address.objects.filter(wedding_id=wedding_id)
+            if address_table:
+                address_table.update(**address_change)
+            else:
+                Address.objects.create(wedding_id=wedding, **address_change)
 
         if request.FILES:
             photos = Photo.objects.filter(wedding_id=wedding_id)
