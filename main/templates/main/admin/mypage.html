@@ -13,7 +13,8 @@
 <body>
     <div class="mypage-wrapper">
         <h2>My Page</h2>
-        <form id="mypage-form" action="{% url 'mypage'  info.wedding_id  %}" method="post" enctype="multipart/form-data">
+        <form id="mypage-form" action="{% url 'mypage'  info.wedding_id  %}" method="post"
+            enctype="multipart/form-data">
             {% csrf_token %}
             <h3>Wedding</h3>
             <hr>
@@ -98,9 +99,9 @@
                         </td>
                         <td>
                             {% if info.use_guestbook %}
-                                <input type="checkbox" name="use_guestbook" checked>
+                            <input type="checkbox" name="use_guestbook" checked>
                             {% else %}
-                                <input type="checkbox" name="use_guestbook">
+                            <input type="checkbox" name="use_guestbook">
                             {% endif %}
                         </td>
                     </tr>
@@ -110,9 +111,9 @@
                         </td>
                         <td>
                             {% if info.is_used %}
-                                <input type="checkbox" name="is_used" checked>
+                            <input type="checkbox" name="is_used" checked>
                             {% else %}
-                                <input type="checkbox" name="is_used">
+                            <input type="checkbox" name="is_used">
                             {% endif %}
                         </td>
                     </tr>
@@ -277,7 +278,8 @@
                             <label>아버지 계좌번호</label>
                         </td>
                         <td>
-                            <input type="text" name="groom_father_account" placeholder="{{ account.groom_father_account }}">
+                            <input type="text" name="groom_father_account"
+                                placeholder="{{ account.groom_father_account }}">
                         </td>
                     </tr>
                     <tr>
@@ -285,7 +287,8 @@
                             <label>어머니 계좌번호</label>
                         </td>
                         <td>
-                            <input type="text" name="groom_mother_account" placeholder="{{ account.groom_mother_account }}">
+                            <input type="text" name="groom_mother_account"
+                                placeholder="{{ account.groom_mother_account }}">
                         </td>
                     </tr>
                 </table>
@@ -306,7 +309,8 @@
                             <label>아버지 계좌번호</label>
                         </td>
                         <td>
-                            <input type="text" name="bride_father_account" placeholder="{{ account.bride_father_account }}">
+                            <input type="text" name="bride_father_account"
+                                placeholder="{{ account.bride_father_account }}">
                         </td>
                     </tr>
                     <tr>
@@ -314,7 +318,8 @@
                             <label>어머니 계좌번호</label>
                         </td>
                         <td>
-                            <input type="text" name="bride_mother_account" placeholder="{{ account.bride_mother_account }}">
+                            <input type="text" name="bride_mother_account"
+                                placeholder="{{ account.bride_mother_account }}">
                         </td>
                     </tr>
                 </table>
@@ -348,7 +353,7 @@
             <div class="section" id="photos">
                 <input type="file" name="images" class="img-input" multiple>
             </div>
-            
+
             <div class="section" id="photos">
                 <div id="slide">
                     {% for photo in photos %}
@@ -362,14 +367,16 @@
             <script src="{% static 'slide.js' %}"></script>
             <input name="write-button" type="submit" role="button" id="mypage-button" value="수정하기" />
         </form>
+        <a href="{% url 'logout' %}"><button>Logout</button></a>
         <a href="{% url 'withdraw' info.wedding_id %}"><button>탈퇴하기</button></a>
 
+
         {% if messages %}
-            {% for message in messages %}
-                <script>
-                    alert("{{ message.message }}")
-                </script>
-            {% endfor %}
+        {% for message in messages %}
+        <script>
+            alert("{{ message.message }}")
+        </script>
+        {% endfor %}
         {% endif %}
 
     </div>

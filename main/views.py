@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.decorators import login_required
+
 from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook
 from .utils import wedding_date
 from datetime import datetime
@@ -56,20 +59,34 @@ def login(request):
         wedding_id = request.POST['wedding_id']
         pw = request.POST['pw']
 
-        wedding = WeddingMain.objects.filter(wedding_id=wedding_id)
+        try:
+            wedding = WeddingMain.objects.get(wedding_id=wedding_id)
 
-        if not wedding:
-            messages.warning(request, '없는 유저입니다.')
-            return render(request, 'main/admin/register.html')
+            if pw == wedding.passwd:
+                # 로그인 성공
+                request.session['user_id'] = wedding.wedding_id
 
-        elif wedding[0].passwd != pw:
-            messages.warning(request, '비밀번호가 틀렸습니다.')
-            return render(request, 'main/admin/login.html')
+                print(12121212, request.session)
+                messages.success(request, '로그인 성공!')
+                return HttpResponseRedirect(f'/user/admin/mypage/{wedding_id}')
 
-        return HttpResponseRedirect(f'/user/admin/mypage/{wedding_id}')
+            else:
+                messages.error(request, '로그인 실패. 다시 시도해주세요.')
 
-    else:
-        return render(request, 'main/admin/login.html')
+        except UserProfile.DoesNotExist:
+            messages.error(request, '사용자가 존재하지 않습니다.')
+
+    return render(request, 'main/admin/login.html')
+
+
+def logout(request):
+    if 'user_id' in request.session:
+        del request.session['user_id']
+
+    messages.info(request, '로그아웃 되었습니다.')
+
+    return render(request, 'main/admin/login.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -109,6 +126,10 @@ def mypage(request, wedding_id):
 
     if not wedding:
         messages.warning(request, '존재하지 않는 Wedding ID 입니다.')
+        return render(request, 'main/admin/login.html')
+    
+    elif request.session.get('user_id') is None or request.session.get('user_id') != wedding_id:
+        messages.info(request, '로그인 해주세요.')
         return render(request, 'main/admin/login.html')
     
     if request.method == 'POST':
