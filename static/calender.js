@@ -45,7 +45,6 @@ function buildCalendar(wedding_year, wedding_month, wedding_day, wedding_time) {
 
 function countWeddingDay(wedding_year, wedding_month, wedding_day) {
   var day_count = document.querySelector("#remaining-days");
-  console.log(11111, day_count)
   var day_sentence = document.querySelector("#day-count>p");
   const toDate = new Date();
   const weddingDate = new Date(wedding_year, wedding_month, wedding_day);
