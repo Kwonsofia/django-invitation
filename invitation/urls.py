@@ -26,6 +26,7 @@ urlpatterns = [
     path('user/admin/login', views.login, name='login'),
     path('user/admin/register', views.register, name='register'),
     path('user/admin/mypage/<str:wedding_id>', views.mypage, name='mypage'),
+    path('user/admin/mypage/<str:wedding_id>/<str:photo_id>', views.detail_photo, name='photo'),
     path('user/admin/mypage/withdraw/<str:wedding_id>', views.withdraw, name='withdraw'),
     path('user/admin/logout', views.logout, name='logout'),
     path('<str:wedding_id>', views.invitation),

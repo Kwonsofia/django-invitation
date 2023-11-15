@@ -32,6 +32,7 @@ h2 {
     color: rgb(38, 30, 19);
 }
 
+.photo-wrapper,
 .mypage-wrapper,
 .register-wrapper,
 .login-wrapper {
@@ -48,6 +49,7 @@ h2 {
     margin-bottom: 40px;
 }
 
+#photo-delete-button,
 #mypage-button,
 #register-button,
 button,
@@ -64,7 +66,7 @@ button,
     background-color: rgba(246, 244, 243, 0.724);
 }
 
-#mypage-form>input::placeholder
+#mypage-form>input::placeholder,
 #login-form>input::placeholder {
     color: #c5c4c4;
     font-size: 1.4em;
@@ -85,6 +87,7 @@ button,
     color: rgb(231, 226, 219);
 }
 
+#photo-delete-button,
 #mypage-button,
 #register-button,
 button {
@@ -99,6 +102,7 @@ button>a {
     text-decoration: none;
 }
 
+#photo-delete-button:hover,
 #mypage-button:hover,
 #register-button:hover,
 button:hover {
@@ -106,11 +110,13 @@ button:hover {
     color: rgb(231, 226, 219);
 }
 
+#photo-delete-button,
 #mypage-button,
 #register-button {
     margin: 20px 0;
 }
 
+#photo-form,
 #mypage-form,
 #register-form {
     color: rgb(36, 29, 21);
@@ -208,4 +214,27 @@ hr {
 
 #photo-table>tr>td {
     text-align: center;
+}
+
+img#detail-image {
+    width: 100%;
+}
+
+
+#close-photo-detail:before,
+#close-photo-detail:after {
+    position: absolute;
+    right: 9%;
+    content: ' ';
+    height: 20px;
+    width: 1px;
+    background-color: #49301f;
+}
+
+#close-photo-detail:before {
+    transform: rotate(45deg);
+}
+
+#close-photo-detail:after {
+    transform: rotate(-45deg);
 }

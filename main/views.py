@@ -37,7 +37,7 @@ def admin_user_info(wedding_id):
         elif 'sub_' in photo.img or 'sub_' in photo.img.url:
             sub_image = photo.img
         else:
-            photo_list.append(photo.img)
+            photo_list.append(photo)
 
     data = {
         'info': wedding,
@@ -66,7 +66,6 @@ def login(request):
                 # 로그인 성공
                 request.session['user_id'] = wedding.wedding_id
 
-                print(12121212, request.session)
                 messages.success(request, '로그인 성공!')
                 return HttpResponseRedirect(f'/user/admin/mypage/{wedding_id}')
 
@@ -268,8 +267,19 @@ def mypage(request, wedding_id):
     return render(request, 'main/admin/mypage.html', result)
 
 
-def withdraw(request, wedding_id):
+def detail_photo(request, wedding_id, photo_id):
+    photo = Photo.objects.get(photo_id=photo_id)
 
+    if request.method == 'POST':
+        photo.delete()
+        messages.success(request, '삭제되었습니다.')
+        
+        return HttpResponseRedirect(f'/user/admin/mypage/{wedding_id}')
+
+    return render(request, 'main/admin/photo.html', {'photo': photo, 'wedding_id': wedding_id})
+
+
+def withdraw(request, wedding_id):
     user_data_delete = get_object_or_404(WeddingMain, wedding_id=wedding_id)
 
     if request.method == 'POST':
@@ -280,6 +290,7 @@ def withdraw(request, wedding_id):
         if passwd and passwd == wedding.passwd:
             user_data_delete.delete()
             messages.success(request, '탈퇴되었습니다.')
+            
             return redirect('login')
         else:
             messages.warning(request, '비밀번호가 틀렸습니다.')

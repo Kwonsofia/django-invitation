@@ -375,7 +375,7 @@
                     <tr class="row">
                         {% endif %}
                         <td class="col-md">
-                            <a href="#"><img src="{{ photo.url }}" alt="{{ photo.photo_id }}"></a>
+                            <a href="{% url 'photo' info.wedding_id photo.photo_id %}"><img src="{{ photo.img.url }}" alt="{{ photo.photo_id }}"></a>
                         </td>
                         {% if forloop.counter|divisibleby:3 or forloop.last %}
                     </tr>

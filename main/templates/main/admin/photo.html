@@ -1,0 +1,24 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'admin_style.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="photo-wrapper">
+        <div id="photo-detail">
+            <p id="close-photo-detail"></p>
+        </div>
+        <img id="detail-image" src="{{ photo.img.url }}" alt="{{ photo.photo_id }}">
+        <form id="photo-form" action="{% url 'photo' wedding_id photo.photo_id %}" method="post">
+            {% csrf_token %}
+            <input name="photo-delete-button" type="submit" role="button" id="photo-delete-button" value="Delete" />
+        </form>
+    </div>
+    <script src="{% static 'photo_detail.js' %}"></script>
+</body>
+</html>
