@@ -12,6 +12,27 @@
 
 <body>
     <div id="main">
+        {% if music %}
+            <!-- <audio autoplay loop>
+                <source src="{{ music.music_url }}" type="audio/mpeg">
+                <source src="{{ music.music_url }}" type="audio/mp4">
+            </audio> -->
+
+            <button onclick="playAudio()" id="music-button">♬</button>
+            <audio id="audioPlayer" autoplay loop>
+                <source src="{{ music.music_url }}" type="audio/mpeg">
+                <source src="{{ music.music_url }}" type="audio/mp3">
+                <source src="{{ music.music_url }}" type="audio/mp4">
+            </audio>
+
+            <script>
+                function playAudio() {
+                    var audio = document.getElementById('audioPlayer');
+                    audio.play();  // 오디오 재생
+                }
+            </script>
+        {% endif %}
+
         {% if main_image %}
         <div class="part" id="mainImage">
             <img src="{{ main_image.url }}">

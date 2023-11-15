@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 
-from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook
+from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook, Music
 from .utils import wedding_date
 from datetime import datetime
 
@@ -260,6 +260,17 @@ def mypage(request, wedding_id):
                 image.name = f'{wedding_id}_' + image.name
                 Photo.objects.create(wedding_id=wedding, img=image)
 
+            music_file = request.FILES.get('music_file')
+
+            if music_file:
+                music = Music.objects.filter(wedding_id=wedding_id)
+
+                if music:
+                    music.delete()
+                music = Music.objects.create(wedding_id=wedding, music_file=music_file)
+                music.music_url = music.music_file.url
+                music.save()
+
         messages.success(request, '수정 완료하였습니다. :)')
 
     result = admin_user_info(wedding_id)
@@ -305,6 +316,7 @@ def invitation(request, wedding_id):
     account = Account.objects.filter(wedding_id=wedding_id)
     address = Address.objects.filter(wedding_id=wedding_id)
     photos = Photo.objects.filter(wedding_id=wedding_id)
+    music = Music.objects.filter(wedding_id=wedding_id)
     guestbooks = GuestBook.objects.filter(wedding_id=wedding_id).order_by('-reg_dtime')
 
     if not wedding:
@@ -346,7 +358,8 @@ def invitation(request, wedding_id):
         'photos': photo_list,
         'date': wedding_date(wedding[0].wedding_date, wedding[0].wedding_time),
         'is_guestbook_use': wedding[0].use_guestbook,
-        'guestbook_list': guestbook_list
+        'guestbook_list': guestbook_list,
+        'music': music[0] if music else None
     }
 
     return render(request, 'main/invitation.html', data)

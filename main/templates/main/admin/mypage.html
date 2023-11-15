@@ -383,6 +383,13 @@
                     {% endfor %}
                 </table>
             </div>
+
+            <br>
+            <h4>BGM</h4>
+            <div class="section" id="music">
+                <input type="file" name="music_file" accept="audio/*">
+            </div>
+
             <input name="write-button" type="submit" role="button" id="mypage-button" value="수정하기" />
         </form>
         <a href="{% url 'logout' %}"><button>Logout</button></a>

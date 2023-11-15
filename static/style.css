@@ -47,6 +47,11 @@ a {
     font-family: 'GowunBatang-Regular';
 }
 
+audio {
+    width: 50%;
+    /* 플레이어의 너비를 100%로 설정 */
+}
+
 .part {
     padding: 100px 0;
 }
@@ -387,7 +392,8 @@ li {
     color: #ab9886;
 }
 
-#day-count>span, #day-count>p {
+#day-count>span,
+#day-count>p {
     font-size: 1.2em;
     color: black;
 }
@@ -508,6 +514,7 @@ li {
     margin: 0;
 }
 
+#music-button,
 #write-button,
 #show-guestbook,
 #write-guestbook,
@@ -534,6 +541,7 @@ li {
     color: #333;
 }
 
+#music-button:hover,
 #write-button:hover,
 #write-guestbook:hover,
 #delete-button:hover {
@@ -646,7 +654,7 @@ li {
     text-align: center;
 }
 
-#guestbooks>p{
+#guestbooks>p {
     margin: 0;
 }
 

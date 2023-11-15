@@ -56,3 +56,9 @@ class Photo(models.Model):
     wedding_id = models.ForeignKey(WeddingMain, on_delete=models.CASCADE)
     photo_id = models.AutoField(primary_key=True)
     img = models.ImageField(upload_to='img')  # image를 넣을때는 {id}_{number}.jpg 형식으로 네이밍 필요
+
+class Music(models.Model):
+    wedding_id = models.ForeignKey(WeddingMain, on_delete=models.CASCADE)
+    music_id = models.AutoField(primary_key=True)
+    music_file = models.ImageField(upload_to='audio/')
+    music_url = models.URLField(blank=True)
