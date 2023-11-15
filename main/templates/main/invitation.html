@@ -28,7 +28,12 @@
             <script>
                 function playAudio() {
                     var audio = document.getElementById('audioPlayer');
-                    audio.play();  // 오디오 재생
+
+                    if (audio.paused) {
+                        audio.play();
+                    } else {
+                        audio.pause();
+                    }
                 }
             </script>
         {% endif %}
