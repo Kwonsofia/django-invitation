@@ -368,19 +368,21 @@
             <h4>Gallery</h4>
             <div class="section" id="photos">
                 <input type="file" name="images" class="img-input" multiple>
-            </div>
 
-            <div class="section" id="photos">
-                <div id="slide">
+                <table id="photo-table">
                     {% for photo in photos %}
-                    <div class="slide_item"><img src="{{ photo.url }}" alt=""></div>
+                    {% if forloop.counter0|divisibleby:3 %}
+                    <tr class="row">
+                        {% endif %}
+                        <td class="col-md">
+                            <a href="#"><img src="{{ photo.url }}" alt="{{ photo.photo_id }}"></a>
+                        </td>
+                        {% if forloop.counter|divisibleby:3 or forloop.last %}
+                    </tr>
+                    {% endif %}
                     {% endfor %}
-                    <div class="slide_prev_button slide_button"></div>
-                    <div class="slide_next_button slide_button"></div>
-                    <ul class="slide_pagination"></ul>
-                </div>
+                </table>
             </div>
-            <script src="{% static 'slide.js' %}"></script>
             <input name="write-button" type="submit" role="button" id="mypage-button" value="수정하기" />
         </form>
         <a href="{% url 'logout' %}"><button>Logout</button></a>
