@@ -95,13 +95,18 @@ def register(request):
             messages.warning(request, '이미 존재하는 유저입니다. 로그인 부탁드립니다.')
             return HttpResponseRedirect('/user/admin/login')
 
+        if 'use_guestbook' in request.POST and request.POST.get('use_guestbook'):
+            is_use_guestbook = True
+        else:
+            is_use_guestbook = False
+
         wedding_main = WeddingMain(
             wedding_id=wedding_id,
             passwd=request.POST['passwd'],
             groom_name=request.POST['groom_name'],
             bride_name=request.POST['bride_name'],
 
-            use_guestbook=request.POST.get('use_guestbook', False),
+            use_guestbook=is_use_guestbook,
             wedding_date=request.POST['wedding_date'],
             wedding_time=request.POST['wedding_time'],
             reg_dtime=datetime.now(),
