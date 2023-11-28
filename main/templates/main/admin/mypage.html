@@ -389,6 +389,14 @@
             <div class="section" id="music">
                 <input type="file" name="music_file" accept="audio/*">
             </div>
+            {% if music %}
+            <audio controls>
+                <source src="{{ music.music_url }}" type="audio/mpeg">
+                <source src="{{ music.music_url }}" type="audio/mp3">
+                <source src="{{ music.music_url }}" type="audio/mp4">
+            </audio>
+            <br>
+            {% endif %}
 
             <input name="write-button" type="submit" role="button" id="mypage-button" value="수정하기" />
         </form>
