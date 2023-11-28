@@ -278,10 +278,12 @@ def mypage(request, wedding_id):
 
             if music_file:
                 temp = Music.objects.filter(wedding_id=wedding_id)
+                print(111111, temp[0].music_id)
                 music = Music.objects.get(music_id=temp[0].music_id)
 
                 if music:
                     music.delete()
+                    default_storage.delete(music.music_file.path)
                 music = Music.objects.create(wedding_id=wedding, music_file=music_file)
                 music.music_url = music.music_file.url
                 music.save()
