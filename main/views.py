@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import default_storage
 
 from .models import WeddingMain, Phone, Account, Photo, Address, GuestBook, Music
 from .utils import wedding_date
@@ -20,6 +21,7 @@ def admin_user_info(wedding_id):
     account = Account.objects.filter(wedding_id=wedding_id)
     address = Address.objects.filter(wedding_id=wedding_id)
     photos = Photo.objects.filter(wedding_id=wedding_id)
+    music = Music.objects.filter(wedding_id=wedding_id)
 
     if not wedding:
         return None
@@ -48,6 +50,7 @@ def admin_user_info(wedding_id):
         'sub_image': sub_image,
         'photos': photo_list,
         'date': wedding_date(wedding.wedding_date, wedding.wedding_time),
+        'music': music[0] if music else None
     }
 
     return data
@@ -139,6 +142,8 @@ def mypage(request, wedding_id):
     if request.method == 'POST':
 
         print('[*] ', request.POST)
+        print('[*] ', request.FILES)
+
         wedding_info_change = {}
         if request.POST.get('change_passwd'):
             if request.POST.get('passwd') == wedding.passwd:
@@ -249,13 +254,17 @@ def mypage(request, wedding_id):
 
             if main_image:
                 if old_main_image:
-                    Photo.objects.filter(photo_id=old_main_image.photo_id).delete()
+                    main_photo = Photo.objects.get(photo_id=old_main_image.photo_id)
+                    main_photo.delete()
+                    default_storage.delete(main_photo.img.path)
                 main_image.name = f'main_{wedding_id}_' + main_image.name
                 Photo.objects.create(wedding_id=wedding, img=main_image)
             
             if sub_image:
                 if old_sub_image:
-                    Photo.objects.filter(photo_id=old_sub_image.photo_id).delete()
+                    sub_photo = Photo.objects.get(photo_id=old_sub_image.photo_id)
+                    sub_photo.delete()
+                    default_storage.delete(sub_photo.img.path)
                 sub_image.name = f'sub_{wedding_id}_' + sub_image.name
                 Photo.objects.create(wedding_id=wedding, img=sub_image)
 
@@ -268,7 +277,8 @@ def mypage(request, wedding_id):
             music_file = request.FILES.get('music_file')
 
             if music_file:
-                music = Music.objects.filter(wedding_id=wedding_id)
+                temp = Music.objects.filter(wedding_id=wedding_id)
+                music = Music.objects.get(music_id=temp[0].music_id)
 
                 if music:
                     music.delete()
