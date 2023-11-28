@@ -806,3 +806,12 @@ li {
         transform: scale(1);
     }
 }
+
+/* Footer */
+#footer {
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px 0;
+    font-size: 0.7em;
+}

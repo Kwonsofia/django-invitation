@@ -45,13 +45,7 @@
         {% endif %}
     
         <div class="part" id="introduce">
-            <div>
-                If we can’t accept limitations,
-            </div>
-            <div>
-                then we’re no better than the bad guys.
-            </div>
-            <div>– Iron Man</div>
+            <p>
         </div>
 
         {% if sub_image %}
@@ -241,7 +235,9 @@
             </div>
             <div>
                 <p id="address">{{ address.address }}</p>
+                {% if address.address_tel %}
                 <p id="address_tel">{{ address.address_tel }}</p>
+                {% endif %}
             </div>
         </div>
         
@@ -420,5 +416,18 @@
     <script src="{% static 'guestbook.js' %}"></script>
 
 </body>
+<footer>
+    <div id="footer">
+        <p>
+            카카오톡으로 공유하기
+        </p>
+        <p>
+            청첩장 주소 복사하기
+        </p>
+        <p>
+            &copy; 2023 Sophia. All rights reserved.
+        </p>
+    </div>
+</footer>
 
 </html>
