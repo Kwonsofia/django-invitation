@@ -530,6 +530,10 @@ li {
     font-family: 'GowunBatang-Regular';
 }
 
+#music-button {
+    background-color: transparent;
+}
+
 #write-button,
 #delete-button {
     margin-top: 20px;
@@ -541,12 +545,15 @@ li {
     color: #333;
 }
 
-#music-button:hover,
 #write-button:hover,
 #write-guestbook:hover,
 #delete-button:hover {
     color: #fff;
     background-color: #f8f2e9;
+}
+
+#music-button:hover {
+    color: #c9c9c9;
 }
 
 #guestbook-modal,
