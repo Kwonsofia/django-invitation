@@ -25,7 +25,7 @@ def admin_user_info(wedding_id):
 
     if not wedding:
         return None
-    
+
     photo_list = []
     main_image = None
     sub_image = None
@@ -134,11 +134,11 @@ def mypage(request, wedding_id):
     if not wedding:
         messages.warning(request, '존재하지 않는 Wedding ID 입니다.')
         return render(request, 'main/admin/login.html')
-    
+
     elif request.session.get('user_id') is None or request.session.get('user_id') != wedding_id:
         messages.info(request, '로그인 해주세요.')
         return render(request, 'main/admin/login.html')
-    
+
     if request.method == 'POST':
 
         print('[*] ', request.POST)
@@ -185,7 +185,7 @@ def mypage(request, wedding_id):
             phone_change['bride_father_phone'] = request.POST.get('bride_father_phone')
         if request.POST.get('bride_mother_phone'):
             phone_change['bride_mother_phone'] = request.POST.get('bride_mother_phone')
-            
+
         account_change = {}
         if request.POST.get('groom_account'):
             account_change['groom_account'] = request.POST.get('groom_account')
@@ -259,7 +259,7 @@ def mypage(request, wedding_id):
                     default_storage.delete(main_photo.img.path)
                 main_image.name = f'main_{wedding_id}_' + main_image.name
                 Photo.objects.create(wedding_id=wedding, img=main_image)
-            
+
             if sub_image:
                 if old_sub_image:
                     sub_photo = Photo.objects.get(photo_id=old_sub_image.photo_id)
@@ -278,10 +278,9 @@ def mypage(request, wedding_id):
 
             if music_file:
                 temp = Music.objects.filter(wedding_id=wedding_id)
-                print(111111, temp[0].music_id)
-                music = Music.objects.get(music_id=temp[0].music_id)
 
-                if music:
+                if temp:
+                    music = Music.objects.get(music_id=temp[0].music_id)
                     music.delete()
                     default_storage.delete(music.music_file.path)
                 music = Music.objects.create(wedding_id=wedding, music_file=music_file)
@@ -301,7 +300,7 @@ def detail_photo(request, wedding_id, photo_id):
     if request.method == 'POST':
         photo.delete()
         messages.success(request, '삭제되었습니다.')
-        
+
         return HttpResponseRedirect(f'/user/admin/mypage/{wedding_id}')
 
     return render(request, 'main/admin/photo.html', {'photo': photo, 'wedding_id': wedding_id})
@@ -318,13 +317,13 @@ def withdraw(request, wedding_id):
         if passwd and passwd == wedding.passwd:
             user_data_delete.delete()
             messages.success(request, '탈퇴되었습니다.')
-            
+
             return redirect('login')
         else:
             messages.warning(request, '비밀번호가 틀렸습니다.')
-        
+
     return render(request, 'main/admin/withdraw.html', {'wedding_id': wedding_id})
-    
+
 
 # Invitation
 def invitation(request, wedding_id):
@@ -340,7 +339,7 @@ def invitation(request, wedding_id):
         return render(request, 'main/error.html')
     elif not wedding[0].is_used:
         return render(request, 'main/error.html')
-    
+
     photo_list = []
 
     main_image = None
